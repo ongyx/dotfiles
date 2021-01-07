@@ -1,10 +1,20 @@
 
-set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all
+set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all autochdir
 
 autocmd BufEnter __run__,__doc__ :wincmd L
 
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+nnoremap H gT
+nnoremap L gt
+
+nnoremap <leader>pt :tabnew<cr>:terminal python<cr>
+nnoremap <leader>bt :tabnew<cr>:terminal \%USERPROFILE\%/scoop/apps/git/current/usr/bin/bash.exe -l -i<cr>
+autocmd BufWritePre *.py :Black
 
 let g:pymode_rope = 1
 let g:pymode_rope_completion = 1
@@ -29,12 +39,14 @@ Plug 'elzr/vim-json'
 
 " Git/UI
 Plug 'itchyny/lightline.vim'
+Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " themes
 "Plug 'ghifarit53/tokyonight-vim'
 Plug 'arcticicestudio/nord-vim'
+"Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 
@@ -49,6 +61,11 @@ set termguicolors
 " nord
 let g:lightline = {'colorscheme' : 'nord'}
 colorscheme nord
+
+" solarized
+"set background=dark
+"let g:lightline = {'colorscheme': 'solarized'}
+"colorscheme solarized8
 
 " go to projects
 cd ~\Desktop\projects
