@@ -1,9 +1,8 @@
 
-set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all autochdir
+set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all visualbell t_vb=
 
 autocmd BufEnter __run__,__doc__ :wincmd L
 
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -11,6 +10,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap H gT
 nnoremap L gt
+map <leader>j bp
+map <leader>k bn
+tnoremap <Esc> <C-\><C-n>
 
 nnoremap <leader>pt :tabnew<cr>:terminal python<cr>
 nnoremap <leader>bt :tabnew<cr>:terminal \%USERPROFILE\%/scoop/apps/git/current/usr/bin/bash.exe -l -i<cr>
@@ -22,6 +24,8 @@ let g:pymode_options_max_line_length = 88
 let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_options_colorcolumn = 0
 let g:pymode_lint_on_write = 1
+let g:pymode_doc = 1
+let g:pymode_doc_bind = '<leader>k'
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -42,6 +46,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-capslock'
 
 " themes
 "Plug 'ghifarit53/tokyonight-vim'

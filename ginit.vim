@@ -1,3 +1,5 @@
+set guifont=IBM\ Plex\ Mono:h12
+
 if exists('g:GuiLoaded')
   GuiTabline 0
   GuiPopupmenu 0
@@ -5,9 +7,13 @@ endif
 
 if exists('g:fvim_loaded')
   " Background composition, can be 'none', 'blur' or 'acrylic'
+
   FVimBackgroundComposition 'none'
   FVimBackgroundOpacity 1.0
   FVimBackgroundAltOpacity 1.0
+
+  "FVimCursorSmoothMove v:true
+  FVimCursorSmoothBlink v:true
 
   " Title bar tweaks (themed with colorscheme)
   FVimCustomTitleBar v:true
