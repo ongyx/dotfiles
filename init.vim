@@ -15,11 +15,12 @@ map <leader>k bn
 tnoremap <Esc> <C-\><C-n>
 
 nnoremap <leader>pt :tabnew<cr>:terminal python<cr>
-nnoremap <leader>bt :tabnew<cr>:terminal \%USERPROFILE\%/scoop/apps/git/current/usr/bin/bash.exe -l -i<cr>
+nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
+vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 autocmd BufWritePre *.py :Black
 
-let g:pymode_rope = 1
-let g:pymode_rope_completion = 1
+"let g:pymode_rope = 1
+"let g:pymode_rope_completion = 1
 let g:pymode_options_max_line_length = 88
 let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_options_colorcolumn = 0
@@ -31,7 +32,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Python
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'ambv/black'
+Plug 'psf/black', { 'tag': '*' }
 Plug 'integralist/vim-mypy'
 
 " Other languages
@@ -41,13 +42,15 @@ Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elzr/vim-json'
 
-" Git/UI
+" UI
 Plug 'itchyny/lightline.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-capslock'
+
+" Git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " themes
 "Plug 'ghifarit53/tokyonight-vim'
@@ -74,4 +77,4 @@ colorscheme nord
 "colorscheme solarized8
 
 " go to projects
-cd ~\Desktop\projects
+cd ~/projects
