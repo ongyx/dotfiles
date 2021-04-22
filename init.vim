@@ -1,5 +1,5 @@
 
-set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all visualbell t_vb=
+set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all visualbell t_vb= termguicolors
 
 autocmd BufEnter __run__,__doc__ :wincmd L
 
@@ -10,28 +10,30 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap H gT
 nnoremap L gt
-map <leader>j bp
-map <leader>k bn
+nnoremap <leader>h :tabm -1<cr>
+nnoremap <leader>l :tabm +1<cr>
+
+nnoremap <leader><up> <C-w><up>
+nnoremap <leader><down> <C-w><down>
+nnoremap <leader><left> <C-w><left>
+nnoremap <leader><right> <C-w><right>
+
+nnoremap <leader>cs :let @/ = ""<cr>
+nnoremap <leader>cl :ccl<cr>
+
 tnoremap <Esc> <C-\><C-n>
 
-nnoremap <leader>pt :tabnew<cr>:terminal python<cr>
+nnoremap <leader>pt :tabnew<cr>:terminal python3<cr>
 nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
-autocmd BufWritePre *.py :Black
 
-"let g:pymode_rope = 1
-"let g:pymode_rope_completion = 1
-let g:pymode_options_max_line_length = 88
-let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
-let g:pymode_options_colorcolumn = 0
-let g:pymode_lint_on_write = 1
-let g:pymode_doc = 1
-let g:pymode_doc_bind = '<leader>k'
+autocmd BufWritePre *.py :Black
+autocmd BufWritePost *.py call flake8#Flake8()
 
 call plug#begin(stdpath('data') . '/plugged')
 
 " Python
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'nvie/vim-flake8'
 Plug 'psf/black', { 'tag': '*' }
 Plug 'integralist/vim-mypy'
 
@@ -53,28 +55,25 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " themes
-"Plug 'ghifarit53/tokyonight-vim'
-Plug 'arcticicestudio/nord-vim'
-"Plug 'lifepillar/vim-solarized8'
+"Plug 'joshdick/onedark.vim'
+"Plug 'tyrannicaltoucan/vim-deep-space'
+"Plug 'NLKNguyen/papercolor-theme'
+Plug 'jmoggee/mirage.vim'
 
 call plug#end()
 
-set termguicolors
+" onedark
+"let g:lightline = {'colorscheme': 'onedark'}
+"colorscheme onedark
 
-" tokyo night (ocean)
-"let g:tokyonight_style = 'storm'
-"let g:tokyonight_enable_italic = 1
-"let g:lightline = {'colorscheme' : 'tokyonight'}
-"colorscheme tokyonight
+" deepspace
+"let g:lightline = {'colorscheme': 'deepspace'}
+"colorscheme deep-space
 
-" nord
-let g:lightline = {'colorscheme' : 'nord'}
-colorscheme nord
+" papercolor
+"set background=light
+"let g:lightline = {'colorscheme': 'PaperColor'}
+"colorscheme PaperColor
 
-" solarized
-"set background=dark
-"let g:lightline = {'colorscheme': 'solarized'}
-"colorscheme solarized8
-
-" go to projects
-cd ~/projects
+" mirage
+colorscheme mirage
