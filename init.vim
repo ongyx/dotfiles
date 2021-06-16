@@ -1,5 +1,8 @@
 
-set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all visualbell t_vb= termguicolors
+set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all visualbell t_vb= termguicolors autochdir
+
+set fileformat=unix
+set fileformats=unix,dos
 
 autocmd BufEnter __run__,__doc__ :wincmd L
 
@@ -18,8 +21,22 @@ nnoremap <leader><down> <C-w><down>
 nnoremap <leader><left> <C-w><left>
 nnoremap <leader><right> <C-w><right>
 
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP
+
 nnoremap <leader>cs :let @/ = ""<cr>
 nnoremap <leader>cl :ccl<cr>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['mypy', 'flake8']
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -28,14 +45,11 @@ nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 
 autocmd BufWritePre *.py :Black
-autocmd BufWritePost *.py call flake8#Flake8()
 
 call plug#begin(stdpath('data') . '/plugged')
 
 " Python
-Plug 'nvie/vim-flake8'
 Plug 'psf/black', { 'tag': '*' }
-Plug 'integralist/vim-mypy'
 
 " Other languages
 Plug 'gabrielelana/vim-markdown'
@@ -43,6 +57,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elzr/vim-json'
+Plug 'vim-syntastic/syntastic'
 
 " UI
 Plug 'itchyny/lightline.vim'
@@ -58,7 +73,8 @@ Plug 'tpope/vim-fugitive'
 "Plug 'joshdick/onedark.vim'
 "Plug 'tyrannicaltoucan/vim-deep-space'
 "Plug 'NLKNguyen/papercolor-theme'
-Plug 'jmoggee/mirage.vim'
+"Plug 'jmoggee/mirage.vim'
+Plug 'cocopon/iceberg.vim'
 
 call plug#end()
 
@@ -76,4 +92,8 @@ call plug#end()
 "colorscheme PaperColor
 
 " mirage
-colorscheme mirage
+"colorscheme mirage
+
+" solarized
+let g:lightline = {'colorscheme': 'iceberg'}
+colorscheme iceberg
