@@ -1,5 +1,6 @@
 
 set colorcolumn=0 tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab number splitbelow splitright foldclose=all visualbell t_vb= termguicolors autochdir
+set background=dark
 
 set fileformat=unix
 set fileformats=unix,dos
@@ -34,9 +35,11 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_python_checkers = ['mypy', 'flake8']
+let g:syntastic_python_mypy_args = "--ignore-missing-imports"
+let g:syntastic_python_flake8_args = "--ignore=E501"
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -46,7 +49,7 @@ vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 
 autocmd BufWritePre *.py :Black
 
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Python
 Plug 'psf/black', { 'tag': '*' }
@@ -94,6 +97,6 @@ call plug#end()
 " mirage
 "colorscheme mirage
 
-" solarized
+" iceberg
 let g:lightline = {'colorscheme': 'iceberg'}
 colorscheme iceberg
