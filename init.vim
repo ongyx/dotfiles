@@ -1,24 +1,24 @@
 set autochdir
-set background=dark
 set colorcolumn=0
-set completeopt=longest,menuone
+set completeopt=menu,preview
 set expandtab
 set fileformat=unix
 set fileformats=unix,dos
 set foldclose=all
+set noshowmode
 set number
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
 set softtabstop=0
 set splitbelow
 set splitright
-set tabstop=8
+set tabstop=2
 set termguicolors
 set t_vb=
 set visualbell
 
 syntax enable
-filetype plugin indent on
+filetype plugin on
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -57,22 +57,17 @@ let g:syntastic_python_checkers = ['mypy', 'flake8']
 let g:syntastic_python_mypy_args = "--ignore-missing-imports"
 let g:syntastic_python_flake8_args = "--ignore=E501"
 
-let g:go_highlight_fields = 1
 let g:go_auto_type_info = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
 
-" Autocomplete if the cursor is not in a commented line.
-function Complete()
-    let hg = join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'))
-    if hg =~ 'comment'
-        return '.<C-x><C-o>'
-    endif
+let g:SuperTabDefaultCompletionType = "context"
 
-    return '.'
-endfunction
-
-au filetype go inoremap <buffer><expr> . Complete()
 tnoremap <Esc> <C-\><C-n>
 
+map <F2> :NERDTreeToggle<cr>
+
+nnoremap <leader>v :GoVet<cr>
 nnoremap <leader>pt :tabnew<cr>:terminal python3<cr>
 nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
@@ -80,9 +75,6 @@ vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 autocmd BufEnter __run__,__doc__ :wincmd L
 autocmd BufWritePost *.py :Black
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-autocmd VimEnter * NERDTree | wincmd p
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -91,7 +83,6 @@ Plug 'psf/black', { 'tag': '*' }
 
 " Other languages
 Plug 'gabrielelana/vim-markdown'
-Plug 'sheerun/vim-polyglot'
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elzr/vim-json'
@@ -110,35 +101,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " themes
-"Plug 'joshdick/onedark.vim'
-"Plug 'tyrannicaltoucan/vim-deep-space'
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'jmoggee/mirage.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'sainnhe/sonokai'
+Plug 'samflores/vim-colors-paramount', {'branch': 'lightline-colorscheme'} 
+"Plug 'dylanaraps/ryuuko'
 
 call plug#end()
 
-" onedark
-"let g:lightline = {'colorscheme': 'onedark'}
-"colorscheme onedark
+let g:lightline = {'colorscheme': 'paramount'}
+colorscheme paramount
 
-" deepspace
-"let g:lightline = {'colorscheme': 'deepspace'}
-"colorscheme deep-space
-
-" papercolor
-"set background=light
-"let g:lightline = {'colorscheme': 'PaperColor'}
-"colorscheme PaperColor
-
-" mirage
-"colorscheme mirage
-
-" iceberg
-let g:lightline = {'colorscheme': 'iceberg'}
-colorscheme iceberg
-
-" sonokai
-"let g:sonokai_style = 'andromeda'
-"colorscheme sonokai
+"colorscheme ryuuko
