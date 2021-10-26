@@ -1,4 +1,5 @@
 set autochdir
+set clipboard=unnamedplus
 set colorcolumn=0
 set completeopt=menu,preview
 set expandtab
@@ -19,6 +20,9 @@ set visualbell
 
 syntax enable
 filetype plugin on
+
+" https://vi.stackexchange.com/a/1958
+command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -41,6 +45,8 @@ noremap Y 0vg_y
 nnoremap <leader>cs :let @/ = ""<cr>
 nnoremap <leader>cl :ccl<cr>
 
+nnoremap <A-b> :Silent xdg-open %<cr>
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -53,24 +59,23 @@ let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "passive_filetypes": ["go"] }
 
-let g:syntastic_python_checkers = ['mypy', 'flake8']
+let g:syntastic_python_checkers = ['mypy']
 let g:syntastic_python_mypy_args = "--ignore-missing-imports"
-let g:syntastic_python_flake8_args = "--ignore=E501"
 
 let g:go_auto_type_info = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_function_calls = 1
+"let g:go_highlight_types = 1
+"let g:go_highlight_extra_types = 1
 
 let g:SuperTabDefaultCompletionType = "context"
 
 tnoremap <Esc> <C-\><C-n>
 
-map <F2> :NERDTreeToggle<cr>
-
 nnoremap <leader>v :GoVet<cr>
 nnoremap <leader>pt :tabnew<cr>:terminal python3<cr>
 nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
+
+map <F2> :NvimTreeToggle<CR>
 
 autocmd BufEnter __run__,__doc__ :wincmd L
 autocmd BufWritePost *.py :Black
@@ -94,7 +99,9 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-capslock'
 Plug 'ervandew/supertab'
-Plug 'preservim/nerdtree'
+Plug 'justinmk/vim-sneak'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -102,11 +109,28 @@ Plug 'tpope/vim-fugitive'
 
 " themes
 Plug 'samflores/vim-colors-paramount', {'branch': 'lightline-colorscheme'} 
-"Plug 'dylanaraps/ryuuko'
+Plug 'dylanaraps/ryuuko'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'kyazdani42/blue-moon'
 
 call plug#end()
 
-let g:lightline = {'colorscheme': 'paramount'}
-colorscheme paramount
+"let g:lightline = {'colorscheme': 'paramount'}
+"colorscheme paramount
 
+"let g:lightline = {}
 "colorscheme ryuuko
+
+let g:tokyonight_style = "night"
+let g:lightline = {'colorscheme': 'tokyonight'}
+colorscheme tokyonight
+
+"colorscheme blue-moon
+"let g:lightline = {'colorscheme': 'blue-moon'}
+
+let g:lightline.separator = {'left': "\ue0b0", 'right': "\ue0b2"}
+let g:lightline.subseparator = {'left': "\ue0b1", 'right': "\ue0b3"}
+
+lua << EOF
+require 'nvim-tree'.setup()
+EOF
