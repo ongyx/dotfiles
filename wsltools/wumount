@@ -1,0 +1,23 @@
+#!/bin/bash
+
+DRIVE=$1
+DRIVE_PATH="/mnt/$DRIVE"
+
+die() {
+  echo "$1"
+  exit 1
+}
+
+if [[ $EUID -ne 0 ]]; then
+  die "$0: sudo/root required" 
+fi
+
+if [[ -z "${DRIVE// }" ]]; then
+  die "$0: drive letter is missing"
+fi
+
+if ! umount $DRIVE_PATH; then
+  die "$0: failed to unmount $DRIVE"
+else
+  rm -r $DRIVE_PATH
+fi

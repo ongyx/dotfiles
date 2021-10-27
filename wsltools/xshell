@@ -1,0 +1,13 @@
+export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
+export LIBGL_ALWAYS_INDIRECT=1
+export GDK_DPI_SCALE=1.25
+export QT_SCALE_FACTOR=1.25
+
+log=/tmp/x.log
+options='-ac -dpi auto -multiwindow -wgl'
+
+/mnt/c/Program\ Files/VcXsrv/vcxsrv.exe $options &> $log &
+
+bash
+
+/mnt/c/Windows/System32/taskkill.exe /F /IM vcxsrv.exe /T &> $log
