@@ -49,21 +49,36 @@ nnoremap <leader>cl :ccl<cr>
 
 nnoremap <leader>b :Silent xdg-open %<cr>
 
-let g:go_auto_type_info = 1
-"let g:go_highlight_types = 1
-let g:go_highlight_extra_types = 1
-let g:go_code_completion_enabled = 0
-
-let g:ale_disable_lsp = 1
-
 tnoremap <Esc> <C-\><C-n>
 
+nnoremap <leader>pt :tabnew<cr>:terminal python3<cr>
+nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
+vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
+
+map <F2> :NvimTreeToggle<CR>
+
+autocmd BufEnter __run__,__doc__ :wincmd L
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+"ale config
+let g:ale_disable_lsp = 1
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+  \'python': ['black', 'isort'],
+\}
+" end ale config
+
 " coc config
+let g:coc_user_config = { 
+  \'diagnostic.displayByAle': 1,
+  \'coc.preferences.formatOnType': 1,
+  \'coc.preferences.formatOnSaveFiletypes': ['python', 'go', 'html'],
+\}
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \pumvisible() ? "\<C-n>" :
+  \<SID>check_back_space() ? "\<TAB>" :
+  \coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -78,21 +93,10 @@ else
 endif
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" end coc config
-
-nnoremap <leader>v :GoVet<cr>
-nnoremap <leader>pt :tabnew<cr>:terminal python3<cr>
-nnoremap <leader>bt :tabnew<cr>:terminal bash -l -i<cr>
-vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
-
-map <F2> :NvimTreeToggle<CR>
-
-autocmd BufEnter __run__,__doc__ :wincmd L
-autocmd BufWritePost *.py :Black
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" end coc config
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -102,7 +106,6 @@ Plug 'psf/black', { 'tag': '*' }
 " Other languages
 Plug 'gabrielelana/vim-markdown'
 Plug 'cespare/vim-toml'
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elzr/vim-json'
 Plug 'vim-syntastic/syntastic'
 Plug 'sheerun/vim-polyglot'
@@ -132,15 +135,15 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 call plug#end()
 
-let g:lightline = {'colorscheme': 'paramount'}
-colorscheme paramount
+"let g:lightline = {'colorscheme': 'paramount'}
+"colorscheme paramount
 
 "let g:lightline = {}
 "colorscheme ryuuko
 
-"let g:tokyonight_style = "night"
-"let g:lightline = {'colorscheme': 'tokyonight'}
-"colorscheme tokyonight
+let g:tokyonight_style = "night"
+let g:lightline = {'colorscheme': 'tokyonight'}
+colorscheme tokyonight
 
 "colorscheme blue-moon
 "let g:lightline = {'colorscheme': 'blue-moon'}
@@ -149,24 +152,27 @@ let g:lightline.separator = {'left': "\ue0b0", 'right': "\ue0b2"}
 let g:lightline.subseparator = {'left': "\ue0b1", 'right': "\ue0b3"}
 
 let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
+  \'linter_checking': 'lightline#ale#checking',
+  \'linter_infos': 'lightline#ale#infos',
+  \'linter_warnings': 'lightline#ale#warnings',
+  \'linter_errors': 'lightline#ale#errors',
+  \'linter_ok': 'lightline#ale#ok',
+\}
 let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
+  \'linter_checking': 'right',
+  \'linter_infos': 'right',
+  \'linter_warnings': 'warning',
+  \'linter_errors': 'error',
+  \'linter_ok': 'right',
+\}
 let g:lightline.active = {
-      \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
-      \            [ 'lineinfo' ],
-	    \            [ 'percent' ],
-	    \            [ 'fileformat', 'fileencoding', 'filetype'] ] }
+  \'right': [
+    \['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+    \['lineinfo'],
+    \['percent'],
+    \['fileformat', 'fileencoding', 'filetype']
+  \]
+\}
 
 let g:lightline#ale#indicator_checking = "\uf110"
 let g:lightline#ale#indicator_infos = "\uf129"
