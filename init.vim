@@ -51,10 +51,17 @@ nnoremap <leader>b :Silent xdg-open %<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
-command! Avsplit execute ':bo split' | execute ':resize 8'
+function! Split()
+  if winnr() == 1
+    split
+    resize 8
+  else
+    vsplit
+  endif
+endfunction
 
-nnoremap <leader>pt :Avsplit<cr>:term python3<cr>
-nnoremap <leader>bt :Avsplit<cr>:term bash -l -i<cr>
+nnoremap <leader>pt :call Split()<cr>:term python3<cr>
+nnoremap <leader>bt :call Split()<cr>:term bash -l -i<cr>
 
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 
@@ -73,16 +80,16 @@ let g:ale_linters = {
   \'vim': [],
   \'javascript': ["eslint"],
   \'python': ["pylint", "mypy"],
-  \'rust': ["cargo"]
+  \'rust': ["cargo"],
+  \'go': ["govet", "staticcheck"]
 \}
 
 let g:ale_fixers = {
   \'javascript': ["prettier", "eslint"],
   \'python': ["isort", "black"],
-  \'rust': ["rustfmt"]
+  \'rust': ["rustfmt"],
+  \'go': ["gofmt"]
 \}
-
-let g:ale_disable_lsp = 1
 
 let g:ale_javascript_eslint_executable = 'eslint_d --cache'
 
@@ -112,8 +119,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
 " end coc.nvim config
 
 " supertab config
