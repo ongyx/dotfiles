@@ -60,8 +60,9 @@ function! Split()
   endif
 endfunction
 
-nnoremap <leader>pt :call Split()<cr>:term python3<cr>
 nnoremap <leader>bt :call Split()<cr>:term bash -l -i<cr>
+nnoremap <leader>ps :call Split()<cr>:term powershell.exe<cr>
+nnoremap <leader>py :call Split()<cr>:term python3<cr>
 
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 
@@ -88,7 +89,8 @@ let g:ale_fixers = {
   \'javascript': ["prettier", "eslint"],
   \'python': ["isort", "black"],
   \'rust': ["rustfmt"],
-  \'go': ["gofmt"]
+  \'go': ["gofmt"],
+  \'json': ["jq"],
 \}
 
 let g:ale_javascript_eslint_executable = 'eslint_d --cache'
