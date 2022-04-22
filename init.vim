@@ -25,6 +25,9 @@ set visualbell
 syntax enable
 filetype plugin on
 
+autocmd FileType markdown setlocal spell complete+=kspell
+autocmd FileType gitcommit setlocal spell complete+=kspell
+
 " https://vi.stackexchange.com/a/1958
 command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
 
@@ -52,12 +55,13 @@ nnoremap <leader>b :Silent xdg-open %<cr>
 tnoremap <Esc> <C-\><C-n>
 
 function! Split()
-  if winnr() == 1
-    split
-    resize 8
-  else
-    vsplit
-  endif
+  "if winnr() == 1
+  "  split
+  "  resize 8
+  "else
+  "  vsplit
+  "endif
+  vsplit
 endfunction
 
 nnoremap <leader>bt :call Split()<cr>:term bash -l -i<cr>
