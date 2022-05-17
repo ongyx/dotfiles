@@ -55,22 +55,14 @@ nnoremap <leader>b :Silent xdg-open %<cr>
 tnoremap <Esc> <C-\><C-n>
 
 function! Split()
-  "if winnr() == 1
-  "  split
-  "  resize 8
-  "else
-  "  vsplit
-  "endif
   vsplit
 endfunction
 
 nnoremap <leader>bt :call Split()<cr>:term bash -l -i<cr>
-nnoremap <leader>ps :call Split()<cr>:term powershell.exe<cr>
+nnoremap <leader>ps :call Split()<cr>:term pwsh.exe<cr>
 nnoremap <leader>py :call Split()<cr>:term python3<cr>
 
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
-
-"inoremap <expr> <cr> ((pumvisible())?("\<C-y>"):("\<cr>"))
 
 map <leader><tab> :NvimTreeToggle<CR>
 
@@ -107,8 +99,11 @@ let g:ale_sign_warning = '.'
 " end ale config
 
 " coc.nvim config
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go 
+
+inoremap <silent><expr> <cr> pumvisible()
+  \? coc#_select_confirm()
+  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -159,10 +154,8 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
 
 " themes
-Plug 'samflores/vim-colors-paramount', {'branch': 'lightline-colorscheme'} 
-"Plug 'dylanaraps/ryuuko'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-"Plug 'kyazdani42/blue-moon'
+Plug 'cocopon/iceberg.vim'
 
 call plug#end()
 
@@ -171,18 +164,12 @@ let g:lightline = {
   \'subseparator': {'left': "\ue0b1", 'right': "\ue0b3"},
 \}
 
-"let g:lightline.colorscheme = 'paramount'
-"colorscheme paramount
-
-"let g:lightline = {}
-"colorscheme ryuuko
-
 let g:tokyonight_style = 'night'
 let g:lightline.colorscheme = 'tokyonight'
 colorscheme tokyonight
 
-"colorscheme blue-moon
-"let g:lightline.colorscheme = 'blue-moon'
+"colorscheme iceberg
+"let g:lightline.colorscheme = 'iceberg'
 
 lua << EOF
 require 'nvim-tree'.setup {
