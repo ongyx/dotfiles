@@ -70,7 +70,7 @@ nnoremap <leader>py :call Split()<cr>:term python3<cr>
 
 vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
 
-inoremap <expr> <cr> ((pumvisible())?("\<C-y>"):("\<cr>"))
+"inoremap <expr> <cr> ((pumvisible())?("\<C-y>"):("\<cr>"))
 
 map <leader><tab> :NvimTreeToggle<CR>
 
@@ -107,6 +107,9 @@ let g:ale_sign_warning = '.'
 " end ale config
 
 " coc.nvim config
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -124,7 +127,6 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
 " end coc.nvim config
 
 " supertab config
@@ -151,7 +153,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'alvan/vim-closetag'
-Plug 'jiangmiao/auto-pairs'
 Plug 'ervandew/supertab'
 
 " Git
