@@ -62,7 +62,7 @@ nnoremap <leader>bt :call Split()<cr>:term bash -l -i<cr>
 nnoremap <leader>ps :call Split()<cr>:term pwsh.exe<cr>
 nnoremap <leader>py :call Split()<cr>:term python3<cr>
 
-vnoremap <leader>md :norm A\<cr>:%s/\\\n\\/\r<cr>
+vnoremap <leader>md :norm A\<cr>:%s#\\\n\\#\r<cr>
 
 map <leader><tab> :NvimTreeToggle<CR>
 
@@ -78,7 +78,8 @@ let g:ale_linters = {
   \'javascript': ["eslint"],
   \'python': ["pylint", "mypy"],
   \'rust': ["cargo"],
-  \'go': ["govet", "staticcheck"]
+  \'go': ["govet", "staticcheck"],
+  \'lua': ["luac"]
 \}
 
 let g:ale_fixers = {
@@ -87,9 +88,12 @@ let g:ale_fixers = {
   \'rust': ["rustfmt"],
   \'go': ["gofmt"],
   \'json': ["jq"],
+  \'lua': ["stylua"]
 \}
 
 let g:ale_javascript_eslint_executable = 'eslint_d --cache'
+
+let g:ale_lua_stylua_options = '--search-parent-directories'
 
 "let g:ale_lint_on_insert_leave = 0
 let g:ale_fix_on_save = 1
@@ -99,7 +103,7 @@ let g:ale_sign_warning = '.'
 " end ale config
 
 " coc.nvim config
-" extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go 
+" extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go coc-clangd
 
 inoremap <silent><expr> <cr> pumvisible()
   \? coc#_select_confirm()
@@ -156,8 +160,20 @@ Plug 'tpope/vim-fugitive'
 " themes
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'cocopon/iceberg.vim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 
 call plug#end()
+
+lua << EOF
+require 'nvim-tree'.setup {
+  open_on_setup = true,
+  view = {
+    width = 30,
+  }
+}
+
+require 'catppuccin'.setup()
+EOF
 
 let g:lightline = {
   \'separator': {'left': "\ue0b0", "right": "\ue0b2"},
@@ -168,15 +184,9 @@ let g:tokyonight_style = 'night'
 let g:lightline.colorscheme = 'tokyonight'
 colorscheme tokyonight
 
-"colorscheme iceberg
 "let g:lightline.colorscheme = 'iceberg'
+"colorscheme iceberg
 
-lua << EOF
-require 'nvim-tree'.setup {
-  open_on_setup = true,
-  view = {
-    width = 30,
-    auto_resize = true
-  }
-}
-EOF
+"let g:catppuccin_flavour = 'macchiato'
+"let g:lightline.colorscheme = 'catppuccin'
+"colorscheme catppuccin
