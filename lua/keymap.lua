@@ -4,6 +4,17 @@ local normal = map.normal
 local visual = map.visual
 local terminal = map.terminal
 
+-- OS specific config
+local preview
+local shell
+if vim.loop.os_uname().sysname == "Windows_NT" then
+	preview = "explorer"
+	shell = "pwsh"
+else
+	preview = "xdg-open"
+	shell = "bash -l -i"
+end
+
 -- Fast config editing/reload
 normal:set("<leader>ev", ":vsplit $MYVIMRC<cr>")
 normal:set("<leader>sv", ":source $MYVIMRC<cr>")
@@ -14,7 +25,7 @@ normal:set("L", ":bn<cr>")
 
 -- Split navigation
 for _, key in ipairs { "up", "down", "left", "right" } do
-	normal:set(("<leader><%s>").format(key), ("<C-w><%s>").format(key))
+	normal:set(string.format("<leader><%s>", key), string.format("<C-w><%s>", key))
 end
 
 -- Delete without saving into a register
@@ -33,12 +44,12 @@ normal:set("<leader>cl", ":ccl<cr>")
 
 -- Open current file with xdg-open
 normal:set("<leader>b", function()
-	vim.cmd "silent !xdg-open %"
+	vim.cmd(string.format("silent !%s %%", preview))
 	vim.cmd "redraw!"
 end)
 
 -- Esc to normal mode when in a terminal
-terminal:set("<Esc>", [[<C-\><C-n>]])
+terminal:set("<esc>", [[<C-\><C-n>]])
 
 local function system(cmd)
 	return function()
@@ -46,9 +57,6 @@ local function system(cmd)
 		vim.cmd("term " .. cmd)
 	end
 end
-
--- Powershell is used on Windows, otherwise Bash.
-local shell = vim.loop.os_uname().sysname == "Windows" and "pwsh.exe" or "bash -l -i"
 
 -- Spawn a terminal
 normal:set("<leader>t", system(shell))

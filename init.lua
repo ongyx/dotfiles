@@ -7,7 +7,7 @@ local MODULES = {
 	"plugin.ale",
 	"plugin.coc",
 	"plugin.supertab",
-	"theme.tokyonight",
+	"theme.paramount",
 }
 
 for _, module in ipairs(MODULES) do

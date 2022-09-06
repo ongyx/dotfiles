@@ -1,5 +1,5 @@
 -- coc.nvim config
--- extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go coc-clangd
+-- extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go coc-clangd coc-sumneko-lua coc-json
 
 local fn = vim.fn
 local bo = vim.bo

@@ -34,4 +34,8 @@ return require("packer").startup(function(use)
 		"folke/tokyonight.nvim",
 		branch = "main",
 	}
+	use {
+		"samflores/vim-colors-paramount",
+		branch = "lightline-colorscheme",
+	}
 end)
