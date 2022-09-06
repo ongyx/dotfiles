@@ -1,6 +1,6 @@
 local g = vim.g
 
-local normal = require("lib/keymap").normal
+local normal = require("map").normal
 
 g.ale_linters = {
 	vim = {},

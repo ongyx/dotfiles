@@ -12,17 +12,11 @@ return require("packer").startup(function(use)
 	-- UI
 	use "alvan/vim-closetag"
 	use "ervandew/supertab"
-	use {
-		"itchyny/lightline.vim",
-		after = "catppuccin",
-	}
+	use "itchyny/lightline.vim"
 	use "justinmk/vim-sneak"
 	use "kyazdani42/nvim-tree.lua"
 	use "kyazdani42/nvim-web-devicons"
-	use {
-		"maximbaz/lightline-ale",
-		after = { "lightline.vim" },
-	}
+	use "maximbaz/lightline-ale"
 	use "tpope/vim-unimpaired"
 	use "tpope/vim-capslock"
 	use "tpope/vim-surround"

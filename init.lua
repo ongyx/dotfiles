@@ -1,5 +1,15 @@
-local config = require "config"
+local MODULES = {
+	"option",
+	"autocmd",
+	"keymap",
+	"plugin.packer",
+	"plugin.nvim_tree",
+	"plugin.ale",
+	"plugin.coc",
+	"plugin.supertab",
+	"theme.tokyonight",
+}
 
-for _, module in ipairs(config.modules) do
+for _, module in ipairs(MODULES) do
 	require(module)
 end

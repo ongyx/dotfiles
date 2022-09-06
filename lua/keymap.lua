@@ -1,9 +1,8 @@
-local keymap = require "lib/keymap"
+local map = require "map"
 
-local map = keymap.Map
-local normal = keymap.normal
-local visual = keymap.visual
-local terminal = keymap.terminal
+local normal = map.normal
+local visual = map.visual
+local terminal = map.terminal
 
 -- Fast config editing/reload
 normal:set("<leader>ev", ":vsplit $MYVIMRC<cr>")

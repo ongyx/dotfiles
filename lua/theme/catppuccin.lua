@@ -2,4 +2,6 @@ vim.g.catppuccin_flavour = "macchiato"
 
 require("catppuccin").setup()
 
-vim.cmd [[colorscheme catppuccin]]
+require "plugin.lightline" "catppuccin"
+
+vim.cmd "colorscheme catppuccin"

@@ -1,1 +1,3 @@
-vim.cmd [[colorscheme iceberg]]
+require "plugin.lightline" "iceberg"
+
+vim.cmd "colorscheme iceberg"

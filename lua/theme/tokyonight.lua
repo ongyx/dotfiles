@@ -1,2 +1,5 @@
 vim.g.tokyonight_style = "night"
-vim.cmd [[colorscheme tokyonight]]
+
+require "plugin.lightline" "tokyonight"
+
+vim.cmd "colorscheme tokyonight"

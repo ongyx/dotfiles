@@ -4,10 +4,10 @@
 local fn = vim.fn
 local bo = vim.bo
 
-local keymap = require "lib/keymap"
+local map = require "map"
 
-local normal = keymap.normal
-local insert = keymap.Map:new { mode = "i", opts = { silent = true, expr = true } }
+local normal = map.normal
+local insert = map:new { mode = "i", opts = { silent = true, expr = true } }
 
 -- Complete on enter
 insert:set("<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<cr><c-r>=coc#on_enter()<cr>"]])
