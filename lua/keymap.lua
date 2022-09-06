@@ -14,7 +14,7 @@ normal:set("L", ":bn<cr>")
 
 -- Split navigation
 for _, key in ipairs { "up", "down", "left", "right" } do
-	normal:set(string.format("<leader><%s>", key), string.format("<C-w><%s>", key))
+	normal:set(("<leader><%s>").format(key), ("<C-w><%s>").format(key))
 end
 
 -- Delete without saving into a register
@@ -50,8 +50,8 @@ end
 -- Powershell is used on Windows, otherwise Bash.
 local shell = vim.loop.os_uname().sysname == "Windows" and "pwsh.exe" or "bash -l -i"
 
--- Spawn a shell
-normal:set("<leader>sh", system(shell))
+-- Spawn a terminal
+normal:set("<leader>t", system(shell))
 
 -- Spawn a Python shell
-normal:set("<leader>py", system "python3")
+normal:set("<leader>p", system "python3")
