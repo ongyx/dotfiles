@@ -6,8 +6,7 @@ local MODULES = {
 	"plugin.nvim_tree",
 	"plugin.ale",
 	"plugin.coc",
-	"plugin.supertab",
-	"theme.paramount",
+	"theme.tokyonight",
 }
 
 for _, module in ipairs(MODULES) do

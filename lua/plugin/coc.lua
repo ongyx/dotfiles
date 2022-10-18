@@ -10,7 +10,13 @@ local normal = map.normal
 local insert = map:new { mode = "i", opts = { silent = true, expr = true } }
 
 -- Complete on enter
-insert:set("<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<cr><c-r>=coc#on_enter()<cr>"]])
+insert:set("<cr>", function()
+	if fn["coc#pum#visible"]() == 1 then
+		fn["coc#pum#confirm"]()
+	else
+		return [[<cr>]]
+	end
+end)
 
 -- Navigate through code
 normal:set("gd", "<Plug>(coc-definition)")

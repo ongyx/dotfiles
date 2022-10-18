@@ -11,7 +11,6 @@ return require("packer").startup(function(use)
 
 	-- UI
 	use "alvan/vim-closetag"
-	use "ervandew/supertab"
 	use "itchyny/lightline.vim"
 	use "justinmk/vim-sneak"
 	use "kyazdani42/nvim-tree.lua"
