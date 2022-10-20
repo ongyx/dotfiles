@@ -3,12 +3,10 @@ local lo = vim.opt_local
 
 local autocmd = vim.api.nvim_create_autocmd
 
--- Enable spellcheck when editing git commits or Markdown files
+-- Enable spelling completion when editing git commits or Markdown files
 autocmd("FileType", {
 	pattern = { "markdown", "gitcommit" },
 	callback = function()
-		lo.spell = true
-		lo.spelllang = "en_us"
 		lo.complete:append("kspell")
 	end,
 })
