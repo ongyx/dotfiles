@@ -1,4 +1,4 @@
-local map = require "map"
+local map = require("map")
 
 local normal = map.normal
 local visual = map.visual
@@ -24,7 +24,7 @@ normal:set("H", ":bp<cr>")
 normal:set("L", ":bn<cr>")
 
 -- Split navigation
-for _, key in ipairs { "up", "down", "left", "right" } do
+for _, key in ipairs({ "up", "down", "left", "right" }) do
 	normal:set(string.format("<leader><%s>", key), string.format("<C-w><%s>", key))
 end
 
@@ -45,7 +45,7 @@ normal:set("<leader>cl", ":ccl<cr>")
 -- Open current file with xdg-open
 normal:set("<leader>b", function()
 	vim.cmd(string.format("silent !%s %%", preview))
-	vim.cmd "redraw!"
+	vim.cmd("redraw!")
 end)
 
 -- Esc to normal mode when in a terminal
@@ -53,7 +53,7 @@ terminal:set("<esc>", [[<C-\><C-n>]])
 
 local function system(cmd)
 	return function()
-		vim.cmd "vsplit"
+		vim.cmd("vsplit")
 		vim.cmd("term " .. cmd)
 	end
 end
@@ -62,4 +62,4 @@ end
 normal:set("<leader>t", system(shell))
 
 -- Spawn a Python shell
-normal:set("<leader>p", system "python3")
+normal:set("<leader>p", system("python3"))

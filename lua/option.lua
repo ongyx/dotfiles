@@ -1,9 +1,13 @@
 local o = vim.opt
+local cmd = vim.cmd
+
+-- Enable spellcheck in code
+cmd("syntax spell toplevel")
 
 -- UI
 o.colorcolumn = ""
 o.number = true
-o.shortmess:append "c"
+o.shortmess = "as"
 o.termguicolors = true
 o.visualbell = true
 
