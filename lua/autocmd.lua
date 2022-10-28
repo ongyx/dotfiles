@@ -7,7 +7,7 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("FileType", {
 	pattern = { "markdown", "gitcommit" },
 	callback = function()
-		lo.complete:append("kspell")
+		lo.complete:append "kspell"
 	end,
 })
 
@@ -15,7 +15,7 @@ autocmd("FileType", {
 autocmd("BufEnter", {
 	pattern = { "__run__", "__doc__" },
 	callback = function()
-		vim.cmd("wincmd L")
+		vim.cmd "wincmd L"
 	end,
 })
 
@@ -23,7 +23,7 @@ autocmd("BufEnter", {
 autocmd("InsertLeave", {
 	callback = function()
 		if fn.pumvisible() == 0 then
-			vim.cmd("pclose")
+			vim.cmd "pclose"
 		end
 	end,
 })

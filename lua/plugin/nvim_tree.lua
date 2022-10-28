@@ -6,4 +6,4 @@ require("nvim-tree").setup {
 }
 
 -- Toggle nvim-treesitter view
-require("map"):set("<leader><tab>", ":NvimTreeToggle<cr>")
+require("map"):set("<leader><tab>", ":NvimTreeToggle")

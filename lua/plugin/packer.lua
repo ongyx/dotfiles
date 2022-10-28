@@ -15,6 +15,7 @@ return require("packer").startup(function(use)
 	use "justinmk/vim-sneak"
 	use "kyazdani42/nvim-tree.lua"
 	use "kyazdani42/nvim-web-devicons"
+	use "lewis6991/gitsigns.nvim"
 	use "maximbaz/lightline-ale"
 	use "tpope/vim-unimpaired"
 	use "tpope/vim-capslock"

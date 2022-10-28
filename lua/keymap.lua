@@ -1,4 +1,5 @@
-local map = require("map")
+local map = require "map"
+local exec = require("util").exec
 
 local normal = map.normal
 local visual = map.visual
@@ -16,15 +17,15 @@ else
 end
 
 -- Fast config editing/reload
-normal:set("<leader>ev", ":vsplit $MYVIMRC<cr>")
-normal:set("<leader>sv", ":source $MYVIMRC<cr>")
+normal:set("<leader>ev", ":edit $MYVIMRC")
+normal:set("<leader>sv", ":source $MYVIMRC")
 
 -- Buffer navigation
-normal:set("H", ":bp<cr>")
-normal:set("L", ":bn<cr>")
+normal:set("H", ":bp")
+normal:set("L", ":bn")
 
 -- Split navigation
-for _, key in ipairs({ "up", "down", "left", "right" }) do
+for _, key in ipairs { "up", "down", "left", "right" } do
 	normal:set(string.format("<leader><%s>", key), string.format("<C-w><%s>", key))
 end
 
@@ -37,15 +38,15 @@ visual:set("<leader>p", '"_dP')
 map:set("Y", "0vg_y")
 
 -- Clear search pattern
-normal:set("<leader>cs", ":let @/ = ''<cr>")
+normal:set("<leader>cs", ":let @/ = ''")
 
 -- Close quickfix window
-normal:set("<leader>cl", ":ccl<cr>")
+normal:set("<leader>cl", ":ccl")
 
 -- Open current file with xdg-open
 normal:set("<leader>b", function()
-	vim.cmd(string.format("silent !%s %%", preview))
-	vim.cmd("redraw!")
+	exec(string.format("silent !%s %%", preview))
+	exec "redraw!"
 end)
 
 -- Esc to normal mode when in a terminal
@@ -53,8 +54,8 @@ terminal:set("<esc>", [[<C-\><C-n>]])
 
 local function system(cmd)
 	return function()
-		vim.cmd("vsplit")
-		vim.cmd("term " .. cmd)
+		exec "vsplit"
+		exec("term " .. cmd)
 	end
 end
 
@@ -62,4 +63,4 @@ end
 normal:set("<leader>t", system(shell))
 
 -- Spawn a Python shell
-normal:set("<leader>p", system("python3"))
+normal:set("<leader>p", system "python3")

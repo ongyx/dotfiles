@@ -3,12 +3,12 @@ local cmd = vim.cmd
 
 -- Enable spellcheck in code
 o.spell = true
-cmd("syntax spell toplevel")
+cmd "syntax spell toplevel"
 
 -- UI
 o.colorcolumn = ""
 o.number = true
-o.shortmess = "aoOs"
+o.shortmess = "aoOsF"
 o.termguicolors = true
 o.visualbell = true
 

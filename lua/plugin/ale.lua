@@ -32,5 +32,5 @@ g.ale_sign_error = "●"
 g.ale_sign_warning = "."
 
 -- Navigate through ALE errors
-normal:set("<PageDown>", ":ALENext<cr>")
-normal:set("<PageUp>", ":ALEPrevious<cr>")
+normal:set("<PageDown>", ":ALENext")
+normal:set("<PageUp>", ":ALEPrevious")

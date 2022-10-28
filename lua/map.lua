@@ -9,7 +9,11 @@ function map:new(o)
 	return o
 end
 
+local colon = string.byte ":"
 function map:set(lhs, rhs)
+	if type(rhs) == "string" and rhs:byte(1) == colon then
+		rhs = rhs .. "<cr>"
+	end
 	keymap.set(self.mode, lhs, rhs, self.opts)
 end
 
