@@ -27,3 +27,11 @@ autocmd("InsertLeave", {
 		end
 	end,
 })
+
+-- Force autoindent on HTMl files
+autocmd("FileType", {
+	pattern = { "php" },
+	callback = function()
+		vim.opt.autoindent = true
+	end,
+})

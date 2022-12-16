@@ -7,7 +7,13 @@ return require("packer").startup(function(use)
 		"neoclide/coc.nvim",
 		branch = "release",
 	}
-	use "sheerun/vim-polyglot"
+	use {
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			local ts_update = require("nvim-treesitter.install").update { with_sync = true }
+			ts_update()
+		end,
+	}
 
 	-- UI
 	use "alvan/vim-closetag"

@@ -5,6 +5,8 @@ local normal = map.normal
 local visual = map.visual
 local terminal = map.terminal
 
+local insert = map:new { mode = "i", opts = { silent = true, expr = true } }
+
 -- OS specific config
 local preview
 local shell
@@ -28,6 +30,9 @@ normal:set("L", ":bn")
 for _, key in ipairs { "up", "down", "left", "right" } do
 	normal:set(string.format("<leader><%s>", key), string.format("<C-w><%s>", key))
 end
+
+-- Complete on enter
+insert:set("<cr>", [[pumvisible() ? ("\<C-y>") : ("\<cr>")]])
 
 -- Delete without saving into a register
 normal:set("<leader>d", '"_d')
@@ -54,7 +59,6 @@ terminal:set("<esc>", [[<C-\><C-n>]])
 
 local function system(cmd)
 	return function()
-		exec "vsplit"
 		exec("term " .. cmd)
 	end
 end

@@ -9,6 +9,8 @@ cmd "syntax spell toplevel"
 o.colorcolumn = ""
 o.number = true
 o.shortmess = "aoOsF"
+o.showmode = false
+o.signcolumn = "yes"
 o.termguicolors = true
 o.visualbell = true
 
@@ -17,16 +19,17 @@ o.autochdir = true
 o.fileformat = "unix"
 o.fileformats = { "unix", "dos" }
 
+-- Indentation
+o.autoindent = true
+o.expandtab = true
+o.tabstop = 4
+o.shiftwidth = 4
+o.softtabstop = 4
+
 -- Editing
 o.clipboard = "unnamedplus"
 o.completeopt = { "menuone", "noinsert" }
-o.expandtab = true
 o.foldmethod = "manual"
 o.mouse = ""
-o.showmode = false
-o.shiftwidth = 2
-o.smarttab = true
-o.softtabstop = 2
 o.splitright = true
 o.splitbelow = true
-o.tabstop = 2

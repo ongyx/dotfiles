@@ -2,10 +2,11 @@ local MODULES = {
 	"option",
 	"autocmd",
 	"keymap",
-	"plugin.packer",
-	"plugin.nvim_tree",
 	"plugin.ale",
 	"plugin.coc",
+	"plugin.nvim_tree",
+	"plugin.packer",
+	"plugin.treesitter",
 	"theme.tokyonight",
 }
 

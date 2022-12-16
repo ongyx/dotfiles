@@ -9,6 +9,7 @@ g.ale_linters = {
 	rust = { "cargo", "analyzer" },
 	go = { "govet", "staticcheck" },
 	lua = { "luac" },
+	php = { "intelephense" },
 }
 
 g.ale_fixers = {
@@ -22,6 +23,7 @@ g.ale_fixers = {
 
 -- Misc. language options
 g.ale_javascript_eslint_executable = "eslint_d --cache"
+
 g.ale_lua_stylua_options = "--search-parent-directories"
 
 -- LSP

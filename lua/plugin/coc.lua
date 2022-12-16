@@ -1,22 +1,14 @@
 -- coc.nvim config
--- extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go coc-clangd coc-sumneko-lua coc-json
+-- extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go coc-clangd coc-sumneko-lua coc-json coc-phpls
 
 local fn = vim.fn
 local bo = vim.bo
 
+local autocmd = vim.api.nvim_create_autocmd
+
 local map = require "map"
 
 local normal = map.normal
-local insert = map:new { mode = "i", opts = { silent = true, expr = true } }
-
--- Complete on enter
-insert:set("<cr>", function()
-	if fn["coc#pum#visible"]() == 1 then
-		fn["coc#pum#confirm"]()
-	else
-		return [[<cr>]]
-	end
-end)
 
 -- Navigate through code
 normal:set("gd", "<Plug>(coc-definition)")
@@ -35,3 +27,11 @@ normal:set("K", function()
 		vim.cmd(string.format("!%s %s", bo.keywordprg, fn.expand "<cword>"))
 	end
 end)
+
+-- Don't autocomplete angle bracket pairs in HTML or PHP files
+autocmd("FileType", {
+	pattern = { "html", "php" },
+	callback = function()
+		vim.b.coc_pairs_disabled = { "<" }
+	end,
+})
