@@ -4,8 +4,9 @@ local exec = require("util").exec
 local normal = map.normal
 local visual = map.visual
 local terminal = map.terminal
+local insert = map.insert
 
-local insert = map:new { mode = "i", opts = { silent = true, expr = true } }
+local insert_expr = map:new { mode = "i", opts = { silent = true, expr = true } }
 
 -- OS specific config
 local preview
@@ -32,7 +33,7 @@ for _, key in ipairs { "up", "down", "left", "right" } do
 end
 
 -- Complete on enter
-insert:set("<cr>", [[pumvisible() ? ("\<C-y>") : ("\<cr>")]])
+insert_expr:set("<cr>", [[pumvisible() ? ("\<C-y>") : ("\<cr>")]])
 
 -- Delete without saving into a register
 normal:set("<leader>d", '"_d')

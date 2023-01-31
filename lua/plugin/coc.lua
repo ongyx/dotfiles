@@ -2,7 +2,7 @@
 -- extensions: coc-pairs coc-rust-analyzer coc-pyright coc-go coc-clangd coc-sumneko-lua coc-json coc-phpls
 
 local fn = vim.fn
-local bo = vim.bo
+local lo = vim.opt_local
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -18,7 +18,7 @@ normal:set("gr", "<Plug>(coc-references)")
 
 -- Show documentation in preview window
 normal:set("K", function()
-	local ft = bo.filetype
+	local ft = lo.filetype
 	if ft == "vim" or ft == "help" then
 		vim.cmd("help " .. fn.expand "<cword>")
 	elseif fn["coc#rpc#ready"]() then

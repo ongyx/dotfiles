@@ -7,6 +7,7 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("FileType", {
 	pattern = { "markdown", "gitcommit" },
 	callback = function()
+		lo.spell = true
 		lo.complete:append "kspell"
 	end,
 })

@@ -1,9 +1,4 @@
 local o = vim.opt
-local cmd = vim.cmd
-
--- Enable spellcheck in code
-o.spell = true
-cmd "syntax spell toplevel"
 
 -- UI
 o.colorcolumn = ""

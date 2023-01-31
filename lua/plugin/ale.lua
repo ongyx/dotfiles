@@ -1,15 +1,12 @@
 local g = vim.g
 
-local normal = require("map").normal
-
 g.ale_linters = {
 	vim = {},
 	javascript = { "eslint" },
-	python = { "pylint", "mypy" },
-	rust = { "cargo", "analyzer" },
+	python = { "pylint", "mypy", "pyright" },
+	rust = { "cargo", "rust-analyzer" },
 	go = { "govet", "staticcheck" },
 	lua = { "luac" },
-	php = { "intelephense" },
 }
 
 g.ale_fixers = {
@@ -30,9 +27,6 @@ g.ale_lua_stylua_options = "--search-parent-directories"
 g.ale_fix_on_save = 1
 
 -- UI
+g.ale_hover_to_preview = 1
 g.ale_sign_error = "●"
 g.ale_sign_warning = "."
-
--- Navigate through ALE errors
-normal:set("<PageDown>", ":ALENext")
-normal:set("<PageUp>", ":ALEPrevious")
