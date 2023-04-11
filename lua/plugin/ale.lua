@@ -2,6 +2,7 @@ local g = vim.g
 
 g.ale_linters = {
 	vim = {},
+	java = { "javac" },
 	javascript = { "eslint" },
 	python = { "pylint", "mypy", "pyright" },
 	rust = { "cargo", "rust-analyzer" },
@@ -10,6 +11,7 @@ g.ale_linters = {
 }
 
 g.ale_fixers = {
+	java = { "google_java_format" },
 	javascript = { "prettier", "eslint" },
 	python = { "isort", "black" },
 	rust = { "rustfmt" },

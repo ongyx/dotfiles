@@ -28,3 +28,4 @@ o.foldmethod = "manual"
 o.mouse = ""
 o.splitright = true
 o.splitbelow = true
+o.linebreak = true

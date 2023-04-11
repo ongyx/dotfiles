@@ -1,12 +1,17 @@
+local fn = vim.fn
+local g = vim.g
+
 local map = require "map"
 local exec = require("util").exec
 
 local normal = map.normal
 local visual = map.visual
 local terminal = map.terminal
-local insert = map.insert
 
 local insert_expr = map:new { mode = "i", opts = { silent = true, expr = true } }
+
+-- Remap leader to spacebar - more convenient to hit
+g.mapleader = " "
 
 -- OS specific config
 local preview
@@ -28,12 +33,34 @@ normal:set("H", ":bp")
 normal:set("L", ":bn")
 
 -- Split navigation
-for _, key in ipairs { "up", "down", "left", "right" } do
-	normal:set(string.format("<leader><%s>", key), string.format("<C-w><%s>", key))
+for _, key in ipairs { "h", "j", "k", "l" } do
+	normal:set(string.format("<c-%s>", key), string.format(":wincmd %s<cr>", key))
 end
 
--- Complete on enter
-insert_expr:set("<cr>", [[pumvisible() ? ("\<C-y>") : ("\<cr>")]])
+-- Trigger completion
+insert_expr:set("<tab>", function()
+	-- select next option if already visible
+	if fn["coc#pum#visible"]() == 1 then
+		return fn["coc#pum#next"](1)
+	end
+
+	-- check if characters before cursor is empty or whitespace
+	local col = fn.col "."
+	if col == 1 or fn.getline("."):sub(col - 1, col - 1):match "%s" ~= nil then
+		return "<tab>"
+	end
+
+	return fn["coc#refresh"]()
+end)
+
+-- Confirm completion
+insert_expr:set("<bslash>", function()
+	if fn["coc#pum#visible"]() == 1 then
+		return fn["coc#pum#confirm"]()
+	else
+		return "<bslash>"
+	end
+end)
 
 -- Delete without saving into a register
 normal:set("<leader>d", '"_d')
