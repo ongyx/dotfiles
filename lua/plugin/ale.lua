@@ -1,5 +1,7 @@
 local g = vim.g
 
+local normal = require("../map").normal
+
 g.ale_linters = {
 	vim = {},
 	java = { "javac" },
@@ -32,3 +34,7 @@ g.ale_fix_on_save = 1
 g.ale_hover_to_preview = 1
 g.ale_sign_error = "●"
 g.ale_sign_warning = "."
+
+-- jump to ALE errors
+normal:set("<leader>,", ":ALEPrevious")
+normal:set("<leader>.", ":ALENext")

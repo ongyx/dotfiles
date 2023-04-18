@@ -34,7 +34,7 @@ normal:set("L", ":bn")
 
 -- Split navigation
 for _, key in ipairs { "h", "j", "k", "l" } do
-	normal:set(string.format("<c-%s>", key), string.format(":wincmd %s<cr>", key))
+	normal:set(string.format("<c-%s>", key), string.format(":wincmd %s", key))
 end
 
 -- Trigger completion
@@ -54,11 +54,11 @@ insert_expr:set("<tab>", function()
 end)
 
 -- Confirm completion
-insert_expr:set("<bslash>", function()
+insert_expr:set("<cr>", function()
 	if fn["coc#pum#visible"]() == 1 then
 		return fn["coc#pum#confirm"]()
 	else
-		return "<bslash>"
+		return "<cr>"
 	end
 end)
 
