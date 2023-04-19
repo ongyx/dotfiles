@@ -2,6 +2,7 @@ local fn = vim.fn
 local lo = vim.opt_local
 
 local autocmd = vim.api.nvim_create_autocmd
+local hl = vim.api.nvim_set_hl
 
 -- Enable spelling completion when editing git commits or Markdown files
 autocmd("FileType", {

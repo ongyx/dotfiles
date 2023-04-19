@@ -1,3 +1,3 @@
-require "plugin.lightline" "iceberg"
+require "plugin.lualine" "iceberg"
 
 vim.cmd "colorscheme iceberg"

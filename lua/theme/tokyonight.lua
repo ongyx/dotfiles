@@ -1,3 +1,8 @@
-require "plugin.lightline" "tokyonight"
+require "plugin.lualine" "tokyonight"
 
-vim.cmd "colorscheme tokyonight-night"
+require("tokyonight").setup {
+	style = "night",
+	transparent = true,
+}
+
+vim.cmd "colorscheme tokyonight"

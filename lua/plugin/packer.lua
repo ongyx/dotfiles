@@ -14,12 +14,14 @@ return require("packer").startup(function(use)
 
 	-- UI
 	use "alvan/vim-closetag"
-	use "itchyny/lightline.vim"
 	use "justinmk/vim-sneak"
 	use "kyazdani42/nvim-tree.lua"
 	use "kyazdani42/nvim-web-devicons"
 	use "lewis6991/gitsigns.nvim"
-	use "maximbaz/lightline-ale"
+	use {
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	}
 	use "tpope/vim-unimpaired"
 	use "tpope/vim-capslock"
 	use "tpope/vim-surround"
