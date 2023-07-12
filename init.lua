@@ -4,7 +4,7 @@ local MODULES = {
 	"keymap",
 	"plugin.ale",
 	"plugin.coc",
-	"plugin.nvim_tree",
+	"plugin.netrw",
 	"plugin.packer",
 	"plugin.treesitter",
 	"theme.tokyonight",

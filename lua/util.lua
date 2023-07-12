@@ -1,9 +1,11 @@
-local cmd = vim.cmd
+local function config(prefix, dest, src)
+	prefix = prefix and prefix .. "_" or ""
 
-local function exec(command)
-	cmd(command .. "\n")
+	for k, v in pairs(src) do
+		dest[prefix .. k] = v
+	end
 end
 
 return {
-	exec = exec,
+	config = config,
 }

@@ -1,11 +1,13 @@
-local fn = vim.fn
 local lo = vim.opt_local
 
+local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local hl = vim.api.nvim_set_hl
+
+local spell = augroup("Spell", { clear = true })
 
 -- Enable spelling completion when editing git commits or Markdown files
 autocmd("FileType", {
+	group = spell,
 	pattern = { "markdown", "gitcommit" },
 	callback = function()
 		lo.spell = true
@@ -13,27 +15,18 @@ autocmd("FileType", {
 	end,
 })
 
--- Move cursor to the new split when opening documentation
-autocmd("BufEnter", {
-	pattern = { "__run__", "__doc__" },
-	callback = function()
-		vim.cmd "wincmd L"
-	end,
+local custom_syntax = augroup("CustomSyntax", { clear = true })
+
+-- use shell script syntax for auditd rules
+autocmd("BufRead", {
+	group = custom_syntax,
+	pattern = "*.rules",
+	command = "set filetype=sh",
 })
 
--- Close preview windows when exiting insert mode
-autocmd("InsertLeave", {
-	callback = function()
-		if fn.pumvisible() == 0 then
-			vim.cmd "pclose"
-		end
-	end,
-})
-
--- Force autoindent on HTMl files
-autocmd("FileType", {
-	pattern = { "php" },
-	callback = function()
-		vim.opt.autoindent = true
-	end,
+-- use XML syntax for nessus audits
+autocmd("BufRead", {
+	group = custom_syntax,
+	pattern = "*.audit",
+	command = "set filetype=xml",
 })

@@ -1,9 +1,24 @@
 return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 
-	-- Languages
+	-- editing
+	use "alvan/vim-closetag"
 	use "dense-analysis/ale"
 	use { "neoclide/coc.nvim", branch = "release" }
+	use "tpope/vim-sleuth"
+	use {
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup {}
+		end,
+	}
+
+	-- appearance
+	use "lewis6991/gitsigns.nvim"
+	use {
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	}
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
@@ -11,22 +26,9 @@ return require("packer").startup(function(use)
 			ts_update()
 		end,
 	}
-
-	-- UI
-	use "alvan/vim-closetag"
-	use "justinmk/vim-sneak"
-	use "kyazdani42/nvim-tree.lua"
-	use "kyazdani42/nvim-web-devicons"
-	use "lewis6991/gitsigns.nvim"
-	use {
-		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
-	}
-	use "tpope/vim-unimpaired"
-	use "tpope/vim-capslock"
 	use "tpope/vim-surround"
 
-	-- Git
+	-- git
 	use "tpope/vim-fugitive"
 
 	-- themes

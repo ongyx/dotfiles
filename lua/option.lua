@@ -1,31 +1,30 @@
-local o = vim.opt
+local opt = vim.opt
 
--- UI
-o.colorcolumn = ""
-o.number = true
-o.shortmess = "aoOsF"
-o.showmode = false
-o.signcolumn = "yes"
-o.termguicolors = true
-o.visualbell = true
+local util = require "../util"
 
--- Files
-o.autochdir = true
-o.fileformat = "unix"
-o.fileformats = { "unix", "dos" }
+util.config(nil, opt, {
+	-- editing
+	autoindent = true,
+	completeopt = { "longest", "menuone" },
+	shiftwidth = 4,
+	expandtab = true,
+	mouse = "",
+	smartindent = true,
+	splitbelow = true,
+	splitright = true,
+	tabstop = 4,
 
--- Indentation
-o.autoindent = true
-o.expandtab = true
-o.tabstop = 4
-o.shiftwidth = 4
-o.softtabstop = 4
+	-- files
+	autochdir = true,
+	confirm = true,
+	fileencoding = "utf-8",
+	fileformat = "unix",
 
--- Editing
-o.clipboard = "unnamedplus"
-o.completeopt = { "menuone", "noinsert" }
-o.foldmethod = "manual"
-o.mouse = ""
-o.splitright = true
-o.splitbelow = true
-o.linebreak = true
+	-- appearance
+	showmode = false,
+	number = true,
+	linebreak = true,
+	relativenumber = true,
+	shortmess = "aoOsF",
+	signcolumn = "yes",
+})

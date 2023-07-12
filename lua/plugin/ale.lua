@@ -1,40 +1,52 @@
 local g = vim.g
+local keymap = vim.keymap
 
-local normal = require("../map").normal
+local util = require "../util"
 
-g.ale_linters = {
-	vim = {},
-	java = { "javac" },
-	javascript = { "eslint" },
-	python = { "pylint", "mypy", "pyright" },
-	rust = { "cargo", "rust-analyzer" },
-	go = { "govet", "staticcheck" },
-	lua = { "luac" },
-}
+util.config("ale", g, {
+	-- LSP
+	fix_on_save = 1,
+	--completion_enabled = 1,
 
-g.ale_fixers = {
-	java = { "google_java_format" },
-	javascript = { "prettier", "eslint" },
-	python = { "isort", "black" },
-	rust = { "rustfmt" },
-	go = { "gofmt" },
-	json = { "jq" },
-	lua = { "stylua" },
-}
+	-- UI
+	floating_preview = 1,
+	hover_to_preview = 1,
+	sign_error = "●",
+	sign_warning = ".",
 
--- Misc. language options
-g.ale_javascript_eslint_executable = "eslint_d --cache"
+	javascript_eslint_executable = "eslint_d --cache",
 
-g.ale_lua_stylua_options = "--search-parent-directories"
+	lua_stylua_options = "--search-parent-directories",
 
--- LSP
-g.ale_fix_on_save = 1
+	linters = {
+		go = { "govet", "staticcheck" },
+		java = { "javac" },
+		javascript = { "eslint" },
+		lua = { "luac" },
+		python = { "pylint", "mypy", "pyright" },
+		rust = { "cargo", "rust-analyzer" },
+		vim = {},
+	},
 
--- UI
-g.ale_hover_to_preview = 1
-g.ale_sign_error = "●"
-g.ale_sign_warning = "."
+	fixers = {
+		["*"] = { "remove_trailing_lines", "trim_whitespace" },
+		go = { "gofmt" },
+		java = { "google_java_format" },
+		javascript = { "prettier", "eslint" },
+		json = { "prettier" },
+		lua = { "stylua" },
+		python = { "isort", "black" },
+		rust = { "rustfmt" },
+		typescript = { "prettier" },
+	},
+})
 
--- jump to ALE errors
-normal:set("<leader>,", ":ALEPrevious")
-normal:set("<leader>.", ":ALENext")
+-- show documentation on hover
+keymap.set("n", "K", "<cmd>ALEHover<cr>")
+
+-- go to definition
+keymap.set("n", "gd", "<cmd>ALEGoToDefinition<cr>")
+
+-- next/previous error
+keymap.set("n", "<leader>>", "<cmd>ALEPrevious<cr>")
+keymap.set("n", "<leader><", "<cmd>ALENext<cr>")

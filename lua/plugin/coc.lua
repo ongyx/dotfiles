@@ -5,44 +5,36 @@
 -- coc-go
 -- coc-java
 -- coc-json
--- coc-pairs
 -- coc-phpls
 -- coc-pyright
 -- coc-rust-analyzer
 -- coc-sumneko-lua
 -- coc-tsserver
 
+local cmd = vim.cmd
 local fn = vim.fn
-local lo = vim.opt_local
+local keymap = vim.keymap
+local opt = vim.opt
+local opt_local = vim.opt_local
 
-local autocmd = vim.api.nvim_create_autocmd
-
-local map = require "map"
-
-local normal = map.normal
+local coc_action_async = fn.CocActionAsync
+local coc_rpc_ready = fn["coc#rpc#ready"]
 
 -- Navigate through code
-normal:set("gd", "<Plug>(coc-definition)")
-normal:set("gy", "<Plug>(coc-type-definition)")
-normal:set("gi", "<Plug>(coc-implementation)")
-normal:set("gr", "<Plug>(coc-references)")
+keymap.set("n", "gd", "<Plug>(coc-definition)")
+keymap.set("n", "gy", "<Plug>(coc-type-definition)")
+keymap.set("n", "gi", "<Plug>(coc-implementation)")
+keymap.set("n", "gr", "<Plug>(coc-references)")
 
 -- Show documentation in preview window
-normal:set("K", function()
-	local ft = lo.filetype
+keymap.set("n", "K", function()
+	local ft = opt_local.filetype
+
 	if ft == "vim" or ft == "help" then
-		vim.cmd("help " .. fn.expand "<cword>")
-	elseif fn["coc#rpc#ready"]() then
-		fn.CocActionAsync "doHover"
+		cmd.help(fn.expand "<cword>")
+	elseif coc_rpc_ready() then
+		coc_action_async "doHover"
 	else
-		vim.cmd(string.format("!%s %s", bo.keywordprg, fn.expand "<cword>"))
+		cmd(string.format("!%s %s", opt.keywordprg, fn.expand "<cword>"))
 	end
 end)
-
--- Don't autocomplete angle bracket pairs in HTML or PHP files
-autocmd("FileType", {
-	pattern = { "html", "php" },
-	callback = function()
-		vim.b.coc_pairs_disabled = { "<" }
-	end,
-})
