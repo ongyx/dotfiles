@@ -3,15 +3,10 @@ return require("packer").startup(function(use)
 
 	-- editing
 	use "alvan/vim-closetag"
+	use "cohama/lexima.vim"
 	use "dense-analysis/ale"
 	use { "neoclide/coc.nvim", branch = "release" }
 	use "tpope/vim-sleuth"
-	use {
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup {}
-		end,
-	}
 
 	-- appearance
 	use "lewis6991/gitsigns.nvim"

@@ -3,11 +3,6 @@ local fn = vim.fn
 local g = vim.g
 local keymap = vim.keymap
 
-local coc_pum_visible = fn["coc#pum#visible"]
-local coc_pum_confirm = fn["coc#pum#confirm"]
-local coc_pum_next = fn["coc#pum#next"]
-local coc_refresh = fn["coc#refresh"]
-
 -- OS specific config
 local preview
 local shell
@@ -86,28 +81,3 @@ end)
 -- edit/source vimrc
 keymap.set("n", "<leader>ve", "<cmd>edit $MYVIMRC<cr>")
 keymap.set("n", "<leader>vs", "<cmd>source $MYVIMRC<cr>")
-
--- Trigger completion
-keymap.set("n", "`", function()
-	-- select next option if already visible
-	if coc_pum_visible() == 1 then
-		return coc_pum_next(1)
-	end
-
-	-- check if characters before cursor is empty or whitespace
-	local col = fn.col "."
-	if col == 1 or fn.getline("."):sub(col - 1, col - 1):match "%s" ~= nil then
-		return "`"
-	end
-
-	return coc_refresh()
-end, { expr = true })
-
--- Confirm completion
-keymap.set("i", "<cr>", function()
-	if coc_pum_visible() == 1 then
-		return coc_pum_confirm()
-	else
-		return "<cr>"
-	end
-end, { expr = true })

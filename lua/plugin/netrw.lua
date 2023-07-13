@@ -13,11 +13,22 @@ util.config("netrw", g, {
 	liststyle = 3,
 	browse_split = 4,
 	altv = 1,
-	winsize = 25,
+	winsize = 30,
 })
 
 -- toggle browser
-keymap.set("n", "<leader><tab>", "<cmd>Lexplore<cr>")
+g.netrw_buffer = 0
+local function toggle()
+	if g.netrw_buffer > 0 and fn.bufloaded(g.netrw_buffer) == 1 then
+		cmd.bdelete(g.netrw_buffer)
+		g.netrw_buffer = 0
+	else
+		cmd.Hexplore()
+		g.netrw_buffer = fn.bufnr()
+	end
+end
+
+keymap.set("n", "`", toggle)
 
 local project_drawer = augroup("ProjectDrawer", { clear = true })
 
@@ -27,7 +38,7 @@ autocmd({ "VimEnter" }, {
 	pattern = "*",
 	callback = function()
 		if fn.argc() == 0 then
-			cmd "Lexplore"
+			toggle()
 		end
 	end,
 })
