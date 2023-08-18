@@ -1,4 +1,5 @@
 local g = vim.g
+local opt = vim.opt
 local keymap = vim.keymap
 
 local util = require "../util"
@@ -19,12 +20,12 @@ util.config("ale", g, {
 	lua_stylua_options = "--search-parent-directories",
 
 	linters = {
-		go = { "govet", "staticcheck" },
+		go = { "govet", "staticcheck", "gopls" },
 		java = { "javac" },
-		javascript = { "eslint" },
-		lua = { "luac" },
+		javascript = { "eslint", "tsserver" },
+		lua = { "luac", "lua-language-server" },
 		python = { "pylint", "mypy", "pyright" },
-		rust = { "cargo", "rust-analyzer" },
+		rust = { "cargo", "analyzer" },
 		vim = {},
 	},
 
@@ -42,10 +43,10 @@ util.config("ale", g, {
 })
 
 -- show documentation on hover
-keymap.set("n", "K", "<cmd>ALEHover<cr>")
+--keymap.set("n", "K", "<cmd>ALEHover<cr>")
 
 -- go to definition
-keymap.set("n", "gd", "<cmd>ALEGoToDefinition<cr>")
+--keymap.set("n", "gd", "<cmd>ALEGoToDefinition<cr>")
 
 -- next/previous error
 keymap.set("n", "<leader>>", "<cmd>ALEPrevious<cr>")

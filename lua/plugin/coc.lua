@@ -17,12 +17,10 @@ local keymap = vim.keymap
 local opt = vim.opt
 local opt_local = vim.opt_local
 
-local coc_action_async = fn.CocActionAsync
+local coc_action_async = fn["CocActionAsync"]
 local coc_rpc_ready = fn["coc#rpc#ready"]
 local coc_pum_visible = fn["coc#pum#visible"]
 local coc_pum_confirm = fn["coc#pum#confirm"]
-local coc_pum_next = fn["coc#pum#next"]
-local coc_refresh = fn["coc#refresh"]
 local coc_on_enter = fn["coc#on_enter"]
 
 -- Navigate through code
@@ -43,22 +41,6 @@ keymap.set("n", "K", function()
 		cmd(string.format("!%s %s", opt.keywordprg, fn.expand "<cword>"))
 	end
 end)
-
--- Trigger completion
-keymap.set("i", ".", function()
-	-- select next option if already visible
-	if coc_pum_visible() == 1 then
-		return coc_pum_next(1)
-	end
-
-	-- check if characters before cursor is empty or whitespace
-	local col = fn.col "."
-	if col == 1 or fn.getline("."):sub(col - 1, col - 1):match "%s" ~= nil then
-		return "."
-	end
-
-	return coc_refresh()
-end, { expr = true })
 
 -- Confirm completion
 keymap.set("i", "<cr>", function()

@@ -2,8 +2,6 @@ return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 
 	-- editing
-	use "alvan/vim-closetag"
-	use "cohama/lexima.vim"
 	use "dense-analysis/ale"
 	use { "neoclide/coc.nvim", branch = "release" }
 	use "tpope/vim-sleuth"
@@ -23,6 +21,9 @@ return require("packer").startup(function(use)
 	}
 	use "tpope/vim-surround"
 
+	-- discord
+	use "andweeb/presence.nvim"
+
 	-- git
 	use "tpope/vim-fugitive"
 
@@ -31,13 +32,9 @@ return require("packer").startup(function(use)
 		"catppuccin/nvim",
 		as = "catppuccin",
 	}
-	use "cocopon/iceberg.vim"
-	use {
-		"folke/tokyonight.nvim",
-		branch = "main",
-	}
 	use {
 		"samflores/vim-colors-paramount",
 		branch = "lightline-colorscheme",
 	}
+	use "loctvl842/monokai-pro.nvim"
 end)

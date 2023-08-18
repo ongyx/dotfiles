@@ -31,9 +31,7 @@ keymap.set("n", "sv", "<cmd>vsplit<cr>")
 keymap.set("n", "sh", "<cmd>split<cr>")
 
 -- window operations
-keymap.set("n", "zw", "<cmd>write<cr>")
-keymap.set("n", "zq", "<cmd>quit<cr>")
-keymap.set("n", "zz", "<cmd>wq<cr>")
+keymap.set("n", "ZW", "<cmd>write<cr>")
 
 -- complete popup navigation
 keymap.set("i", "K", function()

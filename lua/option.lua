@@ -6,6 +6,7 @@ util.config(nil, opt, {
 	-- editing
 	autoindent = true,
 	completeopt = { "longest", "menuone" },
+	gdefault = true,
 	shiftwidth = 4,
 	expandtab = true,
 	mouse = "",
