@@ -11,7 +11,7 @@
           "type": "session"
         },
         {
-          "foreground": "blue",
+          "foreground": "lightGreen",
           "properties": {
             "style": "folder"
           },
@@ -20,23 +20,30 @@
           "type": "path"
         },
         {
-          "foreground": "magenta",
+          "foreground": "yellow",
           "properties": {
-            "branch_icon": " <magenta><b>\ue0a0 </b></>",
+            "branch_icon": "\ue0a0 ",
             "fetch_stash_count": true
           },
           "style": "plain",
           "template": "<#ffffff>on</> {{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
           "type": "git"
+        },
+        {
+          "foreground": "darkGray",
+          "style": "plain",
+          "template": "[{{ .CurrentDate | date .Format }}] ",
+          "type": "time"
         }
       ],
       "type": "prompt"
     },
     {
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
-          "foreground": "#ff94df",
+          "foreground": "white",
           "style": "plain",
           "template": "\uf054",
           "type": "text"
