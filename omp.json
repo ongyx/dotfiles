@@ -16,7 +16,7 @@
             "style": "folder"
           },
           "style": "plain",
-          "template": "<#ffffff>in</> {{ .Path }} ",
+          "template": "<white>in</> {{ .Path }} ",
           "type": "path"
         },
         {
@@ -26,8 +26,14 @@
             "fetch_stash_count": true
           },
           "style": "plain",
-          "template": "<#ffffff>on</> {{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+          "template": "<white>on</> {{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
           "type": "git"
+        },
+        {
+          "foreground": "lightBlue",
+          "style": "plain",
+          "template": "<white>with</> \ue606 {{ .Venv }} ",
+          "type": "python"
         },
         {
           "foreground": "darkGray",
@@ -43,9 +49,9 @@
       "newline": true,
       "segments": [
         {
-          "foreground": "white",
+          "foreground": "p:cosmic-latte",
           "style": "plain",
-          "template": "\uf054",
+          "template": "$",
           "type": "text"
         }
       ],
@@ -53,5 +59,8 @@
     }
   ],
   "final_space": true,
+  "palette": {
+    "cosmic-latte": "#fff8e7"
+  },
   "version": 2
 }
