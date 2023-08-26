@@ -36,6 +36,12 @@
           "type": "python"
         },
         {
+          "foreground": "p:cosmic-latte",
+          "style": "plain",
+          "template": "<white>using</> {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+          "type": "os"
+        },
+        {
           "foreground": "darkGray",
           "style": "plain",
           "template": "[{{ .CurrentDate | date .Format }}] ",
