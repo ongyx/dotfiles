@@ -18,6 +18,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- plugins
-require("lazy").setup("plugins")
+require("lazy").setup "plugins"
 
 vim.cmd.colorscheme "monokai-pro"

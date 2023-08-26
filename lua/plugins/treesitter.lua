@@ -1,8 +1,8 @@
-return { 
-	{ 
+return {
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		config = function ()
+		config = function()
 			require("nvim-treesitter.configs").setup {
 				ensure_installed = { "c", "css", "go", "html", "lua", "php", "python", "rust" },
 				sync_install = false,
@@ -13,6 +13,6 @@ return {
 					additional_vim_regex_highlighting = false,
 				},
 			}
-		end
-	}
+		end,
+	},
 }

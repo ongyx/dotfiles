@@ -1,7 +1,7 @@
-return { 
-	{ 
+return {
+	{
 		"samflores/vim-colors-paramount",
 		branch = "lightline-colorscheme",
-		priority = 1000
-	}
+		priority = 1000,
+	},
 }

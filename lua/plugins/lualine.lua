@@ -1,10 +1,10 @@
 local nr2char = vim.fn.nr2char
 
-return { 
-	{ 
+return {
+	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function ()
+		config = function()
 			require("lualine").setup {
 				options = {
 					section_seperators = {
@@ -29,6 +29,6 @@ return {
 					},
 				},
 			}
-		end
-	}
+		end,
+	},
 }
