@@ -33,9 +33,12 @@ keymap.set("n", "sh", "<cmd>split<cr>")
 -- window operations
 keymap.set("n", "ZW", "<cmd>write<cr>")
 
+-- (omni)completion
+keymap.set("i", "<c-space>", "<c-x><c-o>")
+
 -- complete popup navigation
 keymap.set("i", "K", function()
-	if fn.pumvisible ~= 0 then
+	if fn.pumvisible() ~= 0 then
 		return "<c-P>"
 	end
 
@@ -59,8 +62,9 @@ g.mapleader = " "
 keymap.set("n", "<leader>h", "<cmd>noh<cr>")
 keymap.set("n", "<leader>c", [[<cmd>let @/ = ""<cr>]])
 
--- delete/paste using the black hole register
+-- cut/delete/paste using the black hole register
 -- https://stackoverflow.com/a/11993928
+keymap.set({ "n", "x" }, "<leader>c", [["_c]])
 keymap.set({ "n", "x" }, "<leader>d", [["_d]])
 keymap.set("x", "<leader>p", [["_dP]])
 
