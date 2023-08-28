@@ -1,0 +1,10 @@
+theme = "monokai_pro"
+
+[editor]
+line-number = "relative"
+mouse = false
+true-color = true
+undercurl = true
+
+[editor.soft-wrap]
+enable = true
