@@ -5,18 +5,24 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "cyan",
+          "foreground": "darkGray",
+          "style": "plain",
+          "template": "[{{ .CurrentDate | date .Format }}] ",
+          "type": "time"
+        },
+        {
+          "foreground": "p:cosmic-latte",
           "style": "plain",
           "template": "{{ .UserName }} ",
           "type": "session"
         },
         {
-          "foreground": "lightGreen",
+          "foreground": "cyan",
           "properties": {
-            "style": "folder"
+            "style": "agnoster"
           },
           "style": "plain",
-          "template": "<white>in</> {{ .Path }} ",
+          "template": "{{ .Path }} ",
           "type": "path"
         },
         {
@@ -29,31 +35,6 @@
           "template": "<white>on</> {{ .HEAD }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
           "type": "git"
         },
-        {
-          "foreground": "lightBlue",
-          "style": "plain",
-          "template": "<white>with</> \ue606 {{ .Venv }} ",
-          "type": "python"
-        },
-        {
-          "foreground": "p:cosmic-latte",
-          "style": "plain",
-          "template": "<white>using</> {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
-          "type": "os"
-        },
-        {
-          "foreground": "darkGray",
-          "style": "plain",
-          "template": "[{{ .CurrentDate | date .Format }}] ",
-          "type": "time"
-        }
-      ],
-      "type": "prompt"
-    },
-    {
-      "alignment": "left",
-      "newline": true,
-      "segments": [
         {
           "foreground": "p:cosmic-latte",
           "style": "plain",
