@@ -5,28 +5,22 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "darkGray",
-          "style": "plain",
-          "template": "[{{ .CurrentDate | date .Format }}] ",
-          "type": "time"
-        },
-        {
           "foreground": "p:cosmic-latte",
           "style": "plain",
           "template": "{{ .UserName }} ",
           "type": "session"
         },
         {
-          "foreground": "cyan",
+          "foreground": "magenta",
           "properties": {
-            "style": "agnoster"
+            "style": "folder"
           },
           "style": "plain",
           "template": "{{ .Path }} ",
           "type": "path"
         },
         {
-          "foreground": "yellow",
+          "foreground": "blue",
           "properties": {
             "branch_icon": "\ue0a0 ",
             "fetch_stash_count": true
