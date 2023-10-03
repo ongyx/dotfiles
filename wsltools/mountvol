@@ -1,12 +1,16 @@
 #!/bin/bash
 
-DRIVE=$1
-DRIVE_PATH="/mnt/$DRIVE"
-
 die() {
   echo "$1"
   exit 1
 }
+
+lowercase() {
+  echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+DRIVE=$(lowercase "$1")
+DRIVE_PATH="/mnt/$DRIVE"
 
 if [[ $EUID -ne 0 ]]; then
   die "$0: sudo/root required" 
@@ -18,7 +22,7 @@ fi
 
 mkdir $DRIVE_PATH
 
-if ! mount -t drvfs $DRIVE: $DRIVE_PATH; then
+if ! mount -t drvfs $DRIVE: $DRIVE_PATH -o metadata; then
   rm -r $DRIVE_PATH
   die "$0: failed to mount $DRIVE"
 fi

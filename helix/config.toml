@@ -7,8 +7,18 @@ true-color = true
 undercurl = true
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name", "file-modification-indicator"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+right = ["diagnostics", "selections", "register", "position", "file-encoding", "file-line-ending", "file-type"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "VISUAL"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.soft-wrap]
+enable = true

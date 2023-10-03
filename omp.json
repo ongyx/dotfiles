@@ -30,6 +30,12 @@
           "type": "git"
         },
         {
+          "foreground": "blue",
+          "style": "plain",
+          "template": "<white>with</> {{ .Venv }} ",
+          "type": "python"
+        },
+        {
           "foreground": "p:cosmic-latte",
           "style": "plain",
           "template": "$",

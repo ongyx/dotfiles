@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DRIVE=$1
-DRIVE_PATH="/mnt/$DRIVE"
-
 die() {
   echo "$1"
   exit 1
 }
+
+DRIVE=$1
+DRIVE_PATH="/mnt/$DRIVE"
 
 if [[ $EUID -ne 0 ]]; then
   die "$0: sudo/root required" 
