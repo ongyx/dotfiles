@@ -5,6 +5,7 @@ line-number = "relative"
 mouse = false
 true-color = true
 undercurl = true
+insert-final-newline = false
 
 [editor.statusline]
 left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
@@ -15,7 +16,6 @@ mode.select = "VISUAL"
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
 
 [editor.file-picker]
 hidden = false
