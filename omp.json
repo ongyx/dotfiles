@@ -5,7 +5,7 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "p:cosmic-latte",
+          "foreground": "white",
           "style": "plain",
           "template": "{{ .UserName }} ",
           "type": "session"
@@ -36,7 +36,7 @@
           "type": "python"
         },
         {
-          "foreground": "p:cosmic-latte",
+          "foreground": "white",
           "style": "plain",
           "template": "$",
           "type": "text"
@@ -46,8 +46,5 @@
     }
   ],
   "final_space": true,
-  "palette": {
-    "cosmic-latte": "#fff8e7"
-  },
   "version": 2
 }
