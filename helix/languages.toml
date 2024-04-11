@@ -1,6 +1,45 @@
+[language-server.godot]
+command = "ncat"
+args = ["localhost", "6008"]
+
+[language-server.mdpls]
+command = "mdpls"
+
+[language-server.mdpls.config]
+markdown.preview.auto = true
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+cargo.features = "all"
+cargo.buildScripts.enable = true
+check.command = "clippy"
+inlayHints.bindingModeHints.enable = false
+inlayHints.closingBraceHints.minLines = 10
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.typeHints.hideClosureInitialization = false
+imports.granularity.group = "module"
+
 [[language]]
 name = "python"
+auto-format = true
+formatter = { command = "black", args = ["-"] }
 language-servers = ["pyright"]
 
-formatter = {command = "black", args = ["--quiet", "-"]}
-auto-format = true
+[[language]]
+name = "gdscript"
+scope = "source.gdscript"
+comment-token = "#"
+indent = { tab-width = 2, unit = " " }
+language-servers = ["godot"]
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+
+[[language]]
+name = "rust"
+formatter = { command = "rustfmt", args = ["+nightly"] }
