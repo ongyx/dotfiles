@@ -28,7 +28,7 @@ local function toggle()
 	end
 end
 
-keymap.set("n", "`", toggle)
+keymap.set("n", "<leader>f", toggle)
 
 local project_drawer = augroup("ProjectDrawer", { clear = true })
 

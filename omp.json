@@ -5,7 +5,7 @@
       "alignment": "left",
       "segments": [
         {
-          "foreground": "white",
+          "foreground": "lightWhite",
           "style": "plain",
           "template": "{{ .UserName }} ",
           "type": "session"
@@ -36,7 +36,7 @@
           "type": "python"
         },
         {
-          "foreground": "white",
+          "foreground": "lightWhite",
           "style": "plain",
           "template": "$",
           "type": "text"

@@ -43,3 +43,8 @@ language-servers = ["marksman"]
 [[language]]
 name = "rust"
 formatter = { command = "rustfmt", args = ["+nightly"] }
+
+[[language]]
+name = "typescript"
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true

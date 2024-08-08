@@ -1,4 +1,4 @@
-theme = "maple"
+theme = "base16_default"
 
 [editor]
 line-number = "relative"
@@ -18,6 +18,12 @@ right = ["diagnostics", "selections", "register", "position", "file-encoding", "
 [editor.lsp]
 display-messages = true
 
+[editor.soft-wrap]
+enable = true
+
+[editor.file-picker]
+hidden = true
+
 [keys.normal]
 # No arrow keys for you.
 "up" = "no_op"
@@ -32,8 +38,8 @@ a = ["append_mode", "collapse_selection"]
 X = "extend_line_above"
 
 # Navigate buffers.
-H = ":buffer-previous"
-L = ":buffer-next"
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
 
 # Git commands.
 [keys.normal.G]
