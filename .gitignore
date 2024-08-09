@@ -1,1 +1,3 @@
 .vim
+# Intended to be a symlink to the actual config based on OS.
+helix/config.toml
