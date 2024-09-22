@@ -1,12 +1,26 @@
+[lanugage-server.basedpyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff-lsp"
+
 [language-server.godot]
-command = "ncat"
-args = ["localhost", "6008"]
+command = "netcat"
+args = ["localhost", "6005"]
 
 [language-server.mdpls]
 command = "mdpls"
 
 [language-server.mdpls.config]
 markdown.preview.auto = true
+
+[language-server.omnisharp]
+command = "omnisharp"
+args = ["--languageserver"]
+
+[language-server.csharp-ls]
+command = "csharp-ls"
 
 [language-server.rust-analyzer]
 command = "rust-analyzer"
@@ -23,17 +37,31 @@ inlayHints.lifetimeElisionHints.enable = "skip_trivial"
 inlayHints.typeHints.hideClosureInitialization = false
 imports.granularity.group = "module"
 
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 20
+snippets_first = true
+snippets_inline_by_word_tail = false
+feature_words = false
+feature_snippets = true
+feature_unicode_input = true
+feature_paths = false
+
+[language-server.scls.environment]
+RUST_LOG = "info,simple-completion-language-server=info"
+
 [[language]]
 name = "python"
 auto-format = true
-formatter = { command = "black", args = ["-"] }
-language-servers = ["pyright"]
+language-servers = ["basedpyright", "ruff-lsp"]
 
 [[language]]
 name = "gdscript"
 scope = "source.gdscript"
 comment-token = "#"
-indent = { tab-width = 2, unit = " " }
+indent = { tab-width = 4, unit = "    " }
 language-servers = ["godot"]
 
 [[language]]
@@ -45,6 +73,21 @@ name = "rust"
 formatter = { command = "rustfmt", args = ["+nightly"] }
 
 [[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = ["fmt", "-"] }
+language-servers = []
+
+[[language]]
 name = "typescript"
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "c-sharp"
+language-servers = ["scls", "csharp-ls"]
+auto-format = true
+
+[[language]]
+name = "json"
 auto-format = true
