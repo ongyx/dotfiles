@@ -7,7 +7,7 @@ mouse = false
 true-color = true
 undercurl = true
 insert-final-newline = false
-shell = ["zsh", "-c"]
+shell = ["sh", "-c"]
 bufferline = "multiple"
 popup-border = "all"
 
@@ -33,7 +33,7 @@ right = [
 display-messages = true
 
 [editor.soft-wrap]
-enable = true
+enable = false
 
 [editor.file-picker]
 hidden = true
