@@ -6,7 +6,7 @@ args = ["--stdio"]
 command = "ruff-lsp"
 
 [language-server.godot]
-command = "netcat"
+command = "ncat"
 args = ["localhost", "6005"]
 
 [language-server.mdpls]

@@ -1,0 +1,88 @@
+theme = "dark_plus"
+
+[editor]
+mouse = false
+
+# shell = [
+#   "pwsh.exe",
+#   "-NoLogo",
+#   "-NoProfile",
+#   "-NoProfileLoadTime",
+#   "-Command",
+#   "$PSStyle.OutputRendering='PlainText';",
+# ]
+
+line-number = "relative"
+
+cursorline = true
+
+completion-replace = true
+
+true-color = true
+undercurl = true
+bufferline = "multiple"
+
+color-modes = true
+
+popup-border = "all"
+
+end-of-line-diagnostics = "hint"
+
+[editor.statusline]
+# left = [
+#   "mode",
+#   "spinner",
+#   "file-name",
+#   "read-only-indicator",
+#   "file-modification-indicator",
+# ]
+
+# right = [
+#   "diagnostics",
+#   "selections",
+#   "register",
+#   "position",
+#   "file-encoding",
+#   "file-line-ending",
+#   "file-type",
+# ]
+
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[keys.normal]
+# Discard selection when appending.
+a = ["append_mode", "collapse_selection"]
+
+# Select line above.
+X = "extend_line_above"
+
+# Goto word on Enter.
+"ret" = "goto_word"
+
+# Navigate buffers.
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
+
+# Git commands.
+[keys.normal.G]
+# Diff
+d = [":hsplit-new", ":lang diff", ":insert-output git diff"]
+
+[keys.select]
+# Discard selection and return back to normal mode.
+";" = ["collapse_selection", "normal_mode"]
