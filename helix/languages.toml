@@ -59,13 +59,11 @@ language-servers = ["basedpyright", "ruff-lsp"]
 
 [[language]]
 name = "gdscript"
-scope = "source.gdscript"
-comment-token = "#"
-indent = { tab-width = 4, unit = "    " }
 language-servers = ["godot"]
 
 [[language]]
 name = "markdown"
+comment-tokens = ["-", "+", "*", "1.", ">", "- [ ]"]
 language-servers = ["marksman"]
 
 [[language]]
