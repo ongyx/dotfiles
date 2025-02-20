@@ -6,7 +6,8 @@ LINKS = {
     "helix": "~/.config/helix",
     "yt-dlp": "~/.config/yt-dlp",
     "zsh": "~/.config/zsh",
-    ".zshrc": "~/.zshrc"
+    ".zshrc": "~/.zshrc",
+    ".tmux.conf": "~/.tmux.conf"
 }
 
 def main():
