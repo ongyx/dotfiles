@@ -21,19 +21,15 @@ alias ls="ls -lah --color"
 alias grep="grep --color"
 alias make="/usr/bin/make -j 8"
 
-PROMPT='%2~ %(?.%F{green}%(!.&.*).%F{red}!)%f '
-
-if [[ -f /run/.containerenv ]]; then
-  source /run/.containerenv
-  PROMPT="$container:$name $PROMPT"
+if ! type hx > /dev/null; then
+  # Arch Linux installs helix as 'helix'.
+  alias hx=helix
 fi
 
-function tbx() {
-  if (( ${+container} )); then
-    echo "Already in a container."
-  else
-    toolbox enter
-  fi
+PROMPT='%2~ %(?.%F{green}%(!.&.*).%F{red}!)%f '
+
+function backup() {
+  tar -acvf "$(basename -- "$1") $(date +%F).tar.zst" "$@"
 }
 
 export EDITOR=hx
@@ -46,6 +42,12 @@ export PATH="$PATH:$HOME/.local/bin"
 # go
 export PATH="$PATH:$HOME/go/bin"
 
+# rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# netcoredbg (fedora doesn't have a package for it lol)
+export PATH="$PATH:$HOME/.local/share/netcoredbg"
+
 if [[ "$(uname -o)" = "Android" ]]; then
   setopt CHASE_LINKS
 
@@ -53,7 +55,8 @@ if [[ "$(uname -o)" = "Android" ]]; then
   export UV_LINK_MODE=symlink
 
   # Start SSH agent.
-  source "$(which source-ssh-agent)"
+  sv-enable ssh-agent
+  export SSH_AUTH_SOCK="$PREFIX/var/run/ssh-agent.socket"
 else
   # dotnet
   export PATH="$PATH:$HOME/.dotnet/tools"
@@ -61,8 +64,19 @@ else
   # godot
   export GODOT="$HOME/.config/godotenv/godot/bin/godot"
   export PATH="$PATH:$HOME/.config/godotenv/godot/bin"
+
+  if [[ "$(uname -r)" = *"WSL2" ]]; then
+    export WSL_USER=$(echo $(whoami.exe) | tr -d '\r\n' | cut -d '\' -f 2)
+    export WSL_HOME=/mnt/c/Users/$WSL_USER
+    export GALLIUM_DRIVER=d3d12
+  fi
+
+  # Start SSH agent. This assumes ssh-agent.service is enabled.
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
 if (( $+commands[doctl] )); then
   eval $(doctl completion zsh)
 fi
+
+ssh-add
