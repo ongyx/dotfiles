@@ -1,0 +1,13 @@
+{
+  "getter": {
+    "prefix": "getter",
+    "body": [
+      "var $1: $2:",
+      "    get:",
+      "        return _$1",
+      "    set(value):",
+      "        assert(false, \"$1 is read-only\")"
+    ],
+    "description": "A getter for a private variable."
+  }
+}

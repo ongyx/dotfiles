@@ -3,7 +3,8 @@ command = "basedpyright-langserver"
 args = ["--stdio"]
 
 [language-server.ruff]
-command = "ruff-lsp"
+command = "ruff"
+args = ["server"]
 
 [language-server.godot]
 command = "ncat"
@@ -39,7 +40,7 @@ command = "hx-lsp"
 [[language]]
 name = "python"
 auto-format = true
-language-servers = ["basedpyright", "ruff-lsp"]
+language-servers = ["basedpyright", "ruff"]
 
 [[language]]
 name = "gdscript"
@@ -57,7 +58,8 @@ language-servers = ["marksman"]
 
 [[language]]
 name = "rust"
-formatter = { command = "rustfmt", args = ["+nightly"] }
+auto-format = true
+#formatter = { command = "rustfmt", args = ["+nightly"] }
 
 [[language]]
 name = "toml"

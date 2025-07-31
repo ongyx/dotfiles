@@ -53,10 +53,6 @@ if [[ "$(uname -o)" = "Android" ]]; then
 
   # Hard links are not supported on Android.
   export UV_LINK_MODE=symlink
-
-  # Start SSH agent.
-  sv-enable ssh-agent
-  export SSH_AUTH_SOCK="$PREFIX/var/run/ssh-agent.socket"
 else
   # dotnet
   export PATH="$PATH:$HOME/.dotnet/tools"
@@ -70,13 +66,12 @@ else
     export WSL_HOME=/mnt/c/Users/$WSL_USER
     export GALLIUM_DRIVER=d3d12
   fi
-
-  # Start SSH agent. This assumes ssh-agent.service is enabled.
-  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
 if (( $+commands[doctl] )); then
   eval $(doctl completion zsh)
 fi
 
-ssh-add
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
