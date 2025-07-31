@@ -21,22 +21,6 @@ shell = [
   "$PSStyle.OutputRendering='PlainText';",
 ]
 
-line-number = "relative"
-
-cursorline = true
-
-completion-replace = true
-
-true-color = true
-undercurl = true
-bufferline = "multiple"
-
-color-modes = true
-
-popup-border = "all"
-
-end-of-line-diagnostics = "hint"
-
 [editor.statusline]
 # left = [
 #   "mode",
