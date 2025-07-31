@@ -15,10 +15,6 @@ command = "mdpls"
 [language-server.mdpls.config]
 markdown.preview.auto = true
 
-[language-server.omnisharp]
-command = "omnisharp"
-args = ["--languageserver"]
-
 [language-server.csharp-ls]
 command = "csharp-ls"
 
@@ -37,20 +33,8 @@ inlayHints.lifetimeElisionHints.enable = "skip_trivial"
 inlayHints.typeHints.hideClosureInitialization = false
 imports.granularity.group = "module"
 
-[language-server.scls]
-command = "simple-completion-language-server"
-
-[language-server.scls.config]
-max_completion_items = 20
-snippets_first = true
-snippets_inline_by_word_tail = false
-feature_words = false
-feature_snippets = true
-feature_unicode_input = true
-feature_paths = false
-
-[language-server.scls.environment]
-RUST_LOG = "info,simple-completion-language-server=info"
+[language-server.hx-lsp]
+command = "hx-lsp"
 
 [[language]]
 name = "python"
@@ -88,7 +72,8 @@ auto-format = true
 
 [[language]]
 name = "c-sharp"
-language-servers = ["scls", "csharp-ls"]
+comment-token = ["//", "///"]
+language-servers = ["hx-lsp", "csharp-ls"]
 auto-format = true
 
 [[language]]

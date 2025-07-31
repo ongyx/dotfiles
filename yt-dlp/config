@@ -5,6 +5,5 @@
 --embed-metadata
 --embed-thumbnail
 --download-archive archive.txt
---output '%(id)s.%(ext)s'
 --no-mtime
 --windows-filenames

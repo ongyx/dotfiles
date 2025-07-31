@@ -1,6 +1,6 @@
 {
   "comment": {
-    "prefix": "///",
+    "prefix": "doc",
     "body": [
       "/// <summary>",
       "/// ${1:What it does.}",
@@ -140,7 +140,7 @@
     ],
     "description": "This tag allows a property to be described."
   },
-  "gclass": {
+  "Godot: Class": {
     "prefix": "gclass",
     "body": [
       "[GlobalClass]",
@@ -150,7 +150,7 @@
     ],
     "description": "This tag generates a Godot class."
   },
-  "gsignal": {
+  "Godot: Signal": {
     "prefix": "gsignal",
     "body": [
       "[Signal]",
@@ -158,7 +158,7 @@
     ],
     "description": "This tag generates a Godot signal."
   },
-  "gexport": {
+  "Godot: Export property": {
     "prefix": "gexport",
     "body": [
       "[Export]",
@@ -166,7 +166,7 @@
     ],
     "description": "This tag generates a Godot exported property."
   },
-  "gbexport": {
+  "Godot: Export property with backing field": {
     "prefix": "gbexport",
     "body": [
       "private ${1:type} ${2:private_name};",
@@ -181,5 +181,120 @@
       "}"
     ],
     "description": "This tag generates a Godot exported property with a backing field."
+  },
+  "Unity: Assert non-null serialized field": {
+    "prefix": "uassert",
+    "body": [
+      "Assert.IsNotNull($1, $\"{nameof($1)} is unset.\");"
+    ],
+    "description": "Assert that a Unity serialized field is not null."
+  },
+  "Unity: Log error for null serialized field": {
+    "prefix": "ulog",
+    "body": [
+      "if ($1 == null)",
+      "{",
+      "    Debug.LogError($\"{nameof($1)} is unset.\", this);",
+      "}"
+    ],
+    "description": "Log an error if a Unity serialized field is null."
+  },
+  "Unity: Docstring with tooltip": {
+    "prefix": "udoc",
+    "body": [
+      "/// <summary>",
+      "/// $1",
+      "/// </summary>",
+      "[Tooltip(\"$1\")]"
+    ],
+    "description": "Add a summary docstring with a Unity tooltip."
+  },
+  "Unity: Serialized field (Private)": {
+    "prefix": "upriv",
+    "body": [
+      "/// <summary>",
+      "/// $1",
+      "/// </summary>",
+      "[Tooltip(\"$1\")]",
+      "[SerializeField]",
+      "private $2 $3;"
+    ],
+    "description": "Add a private serialized field with a Unity tooltip."
+  },
+  "Unity: Serialized field (Public)": {
+    "prefix": "upub",
+    "body": [
+      "/// <summary>",
+      "/// $1",
+      "/// </summary>",
+      "[Tooltip(\"$1\")]",
+      "[field: SerializeField]",
+      "public $2 $3 {get; private set;}"
+    ],
+    "description": "Add a public serialized field with a Unity tooltip."
+  },
+  "Unity: Event": {
+    "prefix": "uevent",
+    "body": [
+      "/// <summary>",
+      "/// $1",
+      "/// </summary>",
+      "[Tooltip(\"$1\")]",
+      "[field: SerializeField]",
+      "public UnityEvent $2 { get; private set; } = new();"
+    ],
+    "description": "Add a public serialized event."
+  },
+  "Unity: Event with 1 argument": {
+    "prefix": "uevent1",
+    "body": [
+      "/// <summary>",
+      "/// $1",
+      "/// </summary>",
+      "[Tooltip(\"$1\")]",
+      "[field: SerializeField]",
+      "public UnityEvent<$3> $2 { get; private set; } = new();"
+    ],
+    "description": "Add a public serialized event with one argument."
+  },
+  "Unity: Event with 2 arguments": {
+    "prefix": "uevent2",
+    "body": [
+      "/// <summary>",
+      "/// $1",
+      "/// </summary>",
+      "[Tooltip(\"$1\")]",
+      "[field: SerializeField]",
+      "public UnityEvent<$3, $4> $2 { get; private set; } = new();"
+    ],
+    "description": "Add a public serialized event with two arguments."
+  },
+  "Unity: Editor preprocessor directive": {
+    "prefix": "ued",
+    "body": [
+      "#if UNITY_EDITOR",
+      "        $1",
+      "#endif"
+    ],
+    "description": "Conditionally compile a section of code only in the Unity Editor."
+  },
+  "Unity: Read-only serialized field (private)": {
+    "prefix": "uprivr",
+    "body": [
+      "[SerializeField, ReadOnly]",
+      "private $1 $2;"
+    ],
+    "description": "Add a read-only serialized field."
+  },
+  "Unity: OnValidate": {
+    "prefix": "uvd",
+    "body": [
+      "#if UNITY_EDITOR",
+      "    ${1:private} void OnValidate() {",
+      "        $2",
+      "    }",
+      "#endif"
+    ],
+    "description": "Add an editor-only OnValidate method."
   }
 }
