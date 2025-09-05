@@ -1,7 +1,7 @@
 --continue
 --ignore-errors
 --no-overwrites
---format 'bestaudio[ext=webm]/bestaudio[ext=m4a]'
+--format 'bestaudio[ext=m4a]'
 --extract-audio
 --embed-metadata
 --embed-thumbnail

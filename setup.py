@@ -7,6 +7,7 @@ LINKS = {
     "yt-dlp": "~/.config/yt-dlp",
     "zsh": "~/.config/zsh",
     ".zshrc": "~/.zshrc",
+    ".zshenv": "~/.zshenv",
     ".tmux.conf": "~/.tmux.conf"
 }
 
