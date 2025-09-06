@@ -1,2 +1,4 @@
 .vim
 helix/config.toml
+wt/*
+!wt/settings.json
