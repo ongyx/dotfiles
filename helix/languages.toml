@@ -37,6 +37,10 @@ imports.granularity.group = "module"
 [language-server.hx-lsp]
 command = "hx-lsp"
 
+[language-server.vtsls]
+command = "vtsls"
+args = ["--stdio"]
+
 [[language]]
 name = "python"
 auto-format = true
@@ -70,6 +74,7 @@ language-servers = []
 [[language]]
 name = "typescript"
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = ["vtsls"]
 auto-format = true
 
 [[language]]

@@ -6,6 +6,7 @@ from pathlib import Path
 def get_links() -> dict[str, Path]:
     match os.name:
         case "nt":
+            home = os.environ["USERPROFILE"]
             local_app_data = os.environ["LOCALAPPDATA"]
             roaming_app_data = os.environ["APPDATA"]
 
@@ -16,6 +17,7 @@ def get_links() -> dict[str, Path]:
                 "wt": Path(
                     rf"{local_app_data}\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
                 ),
+                ".gitignore_global": Path(rf"{home}\.gitignore_global")
             }
 
         case "posix":
@@ -30,6 +32,7 @@ def get_links() -> dict[str, Path]:
                 ".zshrc": Path(f"{home}/.zshrc"),
                 ".zshenv": Path(f"{home}/.zshenv"),
                 ".tmux.conf": Path(f"{home}/.tmux.conf"),
+                ".gitignore_global": Path(f"{home}/.gitignore_global")
             }
 
         case _:
