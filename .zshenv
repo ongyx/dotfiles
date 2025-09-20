@@ -1,9 +1,10 @@
 export EDITOR=hx
+export JEKYLL_EDITOR=code
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 function () {
   local jobs=""
-  if [[ "$(uname -o)" = "Darwin" ]]; then
+  if [[ "$(uname)" = "Darwin" ]]; then
     jobs=$(sysctl -n hw.logicalcpu)
   else
     jobs=$(nproc)
@@ -24,7 +25,11 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # netcoredbg (fedora doesn't have a package for it lol)
 export PATH="$PATH:$HOME/.local/share/netcoredbg"
 
-if [[ "$(uname -o)" = "Android" ]]; then
+if [[ "$(uname)" = "Darwin" ]]; then
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
+
+if [[ "$(uname)" = "Android" ]]; then
   setopt CHASE_LINKS
 
   # Hard links are not supported on Android.

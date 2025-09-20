@@ -14,9 +14,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 autoload -U zmv
 
-setopt RE_MATCH_PCRE
-source $HOME/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
 alias ls="ls -lah --color"
 alias grep="grep --color"
 alias make="/usr/bin/make -j 8"
@@ -39,3 +36,10 @@ fi
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+  source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+  chruby ruby
+fi
+  
