@@ -12,12 +12,12 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.FindText",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
@@ -34,19 +34,26 @@
     {
         "defaults": 
         {
+            "adjustIndistinguishableColors": "always",
             "colorScheme": "Dark+",
             "font": 
             {
-                "face": "JetBrains Mono"
-            }
+                "face": "JetBrains Mono",
+                "size": 11,
+                "weight": "normal"
+            },
+            "intenseTextStyle": "bold"
         },
         "list": 
         [
             {
+                "colorScheme": "One Half Light",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
-                "name": "Windows PowerShell"
+                "name": "Windows PowerShell",
+                "opacity": 100,
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Vintage",
@@ -62,22 +69,56 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "colorScheme": "GitHub-Dark-Default",
+                "colorScheme": "Dark+",
+                "font": 
+                {
+                    "face": "JetBrains Mono",
+                    "size": 11
+                },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+                "guid": "{3c752159-d0da-54d4-8872-a7c60226d8e6}",
                 "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{5c917b47-ec4a-55a3-94ff-c669165bcca4}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
     "schemes": 
     [
+        {
+            "background": "#F7F7F7",
+            "black": "#000000",
+            "blue": "#325CC0",
+            "brightBlack": "#777777",
+            "brightBlue": "#007ACC",
+            "brightCyan": "#00AACB",
+            "brightGreen": "#60CB00",
+            "brightPurple": "#E64CE6",
+            "brightRed": "#F05050",
+            "brightWhite": "#F0F0F0",
+            "brightYellow": "#FFBC5D",
+            "cursorColor": "#007ACC",
+            "cyan": "#0083B2",
+            "foreground": "#000000",
+            "green": "#448C27",
+            "name": "Alabaster",
+            "purple": "#7A3E9D",
+            "red": "#AA3731",
+            "selectionBackground": "#BFDBFE",
+            "white": "#F0F0F0",
+            "yellow": "#CB9000"
+        },
         {
             "background": "#0D1117",
             "black": "#484F58",
@@ -102,5 +143,7 @@
             "yellow": "#D29922"
         }
     ],
-    "themes": []
+    "theme": "system",
+    "themes": [],
+    "useAcrylicInTabRow": true
 }
