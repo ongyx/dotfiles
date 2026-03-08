@@ -12,12 +12,12 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
-        },
-        {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
@@ -35,6 +35,7 @@
         "defaults": 
         {
             "adjustIndistinguishableColors": "always",
+            "bellStyle": "taskbar",
             "colorScheme": "Dark+",
             "font": 
             {
@@ -90,6 +91,32 @@
                 "guid": "{5c917b47-ec4a-55a3-94ff-c669165bcca4}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{93312b4e-bfd4-554f-b52d-1dcad2a19605}",
+                "hidden": false,
+                "name": "Arch Linux",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "commandline": "wsl -d kali-linux kex --esm --wtstart -s",
+                "guid": "{55ca431a-3a87-5fb3-83cd-11ecedd031d2}",
+                "hidden": false,
+                "icon": "file:///c:/users/ongyo/pictures/icons/kali-menu.png",
+                "name": "Kali Linux",
+                "startingDirectory": "//wsl$/kali-linux/home/phaethon"
+            },
+            {
+                "guid": "{40111920-2be4-5317-b23e-863465097879}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{b5e9fc16-d72b-5692-8631-e30e201a040f}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022 (2)",
                 "source": "Windows.Terminal.VisualStudio"
             }
         ]

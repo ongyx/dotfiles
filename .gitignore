@@ -2,3 +2,4 @@
 helix/config.toml
 wt/*
 !wt/settings.json
+helix/runtime
