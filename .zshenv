@@ -16,6 +16,9 @@ function () {
 # uv
 export PATH="$PATH:$HOME/.local/bin"
 
+# bun
+export PATH="$PATH:$HOME/.bun/bin"
+
 # go
 export PATH="$PATH:$HOME/go/bin"
 
