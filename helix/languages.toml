@@ -41,6 +41,10 @@ command = "hx-lsp"
 command = "vtsls"
 args = ["--stdio"]
 
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"] 
+
 [[language]]
 name = "python"
 auto-format = true
@@ -49,11 +53,6 @@ language-servers = ["basedpyright", "ruff"]
 [[language]]
 name = "gdscript"
 language-servers = ["godot"]
-
-[[language]]
-name = "javascript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = true
 
 [[language]]
 name = "markdown"
@@ -72,20 +71,35 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 language-servers = []
 
 [[language]]
-name = "typescript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-language-servers = ["vtsls"]
-auto-format = true
-
-[[language]]
 name = "c-sharp"
 comment-token = ["//", "///"]
 language-servers = ["hx-lsp", "csharp-ls"]
 auto-format = true
 
 [[language]]
+name = "javascript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "vtsls" ]
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
 name = "json"
 auto-format = true
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
 
 [[language]]
 name = "ini"

@@ -14,6 +14,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 autoload -U zmv
 
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
 alias ls="ls -lah --color"
 alias grep="grep --color"
 alias make="/usr/bin/make -j 8"
@@ -24,6 +29,7 @@ if ! type hx > /dev/null; then
 fi
 
 PROMPT='%2~ %(?.%F{green}%(!.&.*).%F{red}!)%f '
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 function backup() {
   tar -acvf "$(basename -- "$1") $(date +%F).tar.zst" "$@"
@@ -42,4 +48,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
   source /opt/homebrew/opt/chruby/share/chruby/auto.sh
   chruby ruby
 fi
-  
+
+if [[ "$(systemd-detect-virt)" == "wsl" ]]; then
+  export GALLIUM_DRIVER=d3d12
+  export LIBVA_DRIVER_NAME=d3d12
+fi
