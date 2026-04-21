@@ -36,6 +36,7 @@ def get_links() -> dict[str, Path]:
                 "zsh": Path(f"{home}/.config/zsh"),
                 ".zshrc": Path(f"{home}/.zshrc"),
                 ".zshenv": Path(f"{home}/.zshenv"),
+                ".zprofile": Path(f"{home}/.zprofile"),
                 ".tmux.conf": Path(f"{home}/.tmux.conf"),
                 ".gitignore_global": Path(f"{home}/.gitignore_global"),
             }

@@ -8,7 +8,11 @@ setopt beep extendedglob nomatch notify
 zstyle :compinstall filename '$HOME/.zshrc'
 
 autoload -Uz compinit
-compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # End of lines added by compinstall
 
@@ -49,7 +53,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   chruby ruby
 fi
 
-if [[ "$(systemd-detect-virt)" == "wsl" ]]; then
+if [[ (( $+commands[systemd-detect-virt] )) ||  "$(systemd-detect-virt)" == "wsl" ]]; then
   export GALLIUM_DRIVER=d3d12
   export LIBVA_DRIVER_NAME=d3d12
 fi
