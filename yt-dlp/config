@@ -1,8 +1,9 @@
+--extractor-args "youtube:player_client=web_music,default;"
+--extractor-args "youtubepot-bgutilhttp:base_url=http://localhost:4416"
 --continue
---ignore-errors
 --no-overwrites
 --format 'bestaudio[ext=m4a]'
---extract-audio
+--output '%(title)s.%(ext)s'
 --embed-metadata
 --embed-thumbnail
 --download-archive archive.txt
