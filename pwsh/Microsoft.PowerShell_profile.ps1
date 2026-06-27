@@ -1,4 +1,3 @@
-$env:PATH += ";$env:USERPROFILE\.local\bin"
 $env:GIT_SSH = $((Get-Command -Name ssh).Source)
 
 Set-Alias -Name openssl -Value "C:\Program Files\Git\usr\bin\openssl.exe"

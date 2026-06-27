@@ -68,8 +68,8 @@ X = "extend_line_above"
 "ret" = "goto_word"
 
 # Navigate buffers.
-"tab" = ":buffer-next"
-"S-tab" = ":buffer-previous"
+H = ":buffer-next"
+L = ":buffer-previous"
 
 # Git commands.
 [keys.normal.G]
