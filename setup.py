@@ -2,7 +2,6 @@
 import os
 from pathlib import Path
 
-
 PWSH_PROFILE = "Microsoft.PowerShell_profile.ps1"
 WT_PACKAGE = "Microsoft.WindowsTerminal_8wekyb3d8bbwe"
 
@@ -10,35 +9,42 @@ WT_PACKAGE = "Microsoft.WindowsTerminal_8wekyb3d8bbwe"
 def get_links() -> dict[str, Path]:
     match os.name:
         case "nt":
-            home = os.environ["USERPROFILE"]
-            local_app_data = os.environ["LOCALAPPDATA"]
-            roaming_app_data = os.environ["APPDATA"]
+            home = Path(os.environ["USERPROFILE"])
+            local_app_data = Path(os.environ["LOCALAPPDATA"])
+            roaming_app_data = Path(os.environ["APPDATA"])
+            helix_config = roaming_app_data / "helix"
 
             return {
-                "helix": Path(rf"{roaming_app_data}\helix"),
-                r"helix\config.windows.toml": Path(r"helix\config.toml").absolute(),
-                rf"pwsh\{PWSH_PROFILE}": Path(
-                    rf"{home}\Documents\PowerShell\{PWSH_PROFILE}"
-                ),
-                "yt-dlp": Path(rf"{roaming_app_data}\yt-dlp"),
-                "wt": Path(rf"{local_app_data}\Packages\{WT_PACKAGE}\LocalState"),
-                ".gitignore_global": Path(rf"{home}\.gitignore_global"),
+                "helix/config.windows.toml": helix_config / "config.toml",
+                "helix/languages.toml": helix_config / "languages.toml",
+                "helix/plugins/init.scm": helix_config / "init.scm",
+                "helix/plugins/helix.scm": helix_config / "helix.scm",
+                "helix/snippets": helix_config / "snippets",
+                f"pwsh/{PWSH_PROFILE}": home / "Documents/PowerShell" / PWSH_PROFILE,
+                "yt-dlp": roaming_app_data / "yt-dlp",
+                "wt": local_app_data / "Packages" / WT_PACKAGE / "LocalState",
+                ".gitignore_global": home / ".gitignore_global",
             }
 
         case "posix":
-            home = os.environ["HOME"]
+            home = Path(os.environ["HOME"])
+            config = home / ".config"
+            helix_config = config / "helix"
 
             return {
-                "ghostty": Path(f"{home}/.config/ghostty"),
-                "helix": Path(f"{home}/.config/helix"),
-                r"helix/config.posix.toml": Path(r"helix/config.toml").absolute(),
-                "yt-dlp": Path(f"{home}/.config/yt-dlp"),
-                "zsh": Path(f"{home}/.config/zsh"),
-                ".zshrc": Path(f"{home}/.zshrc"),
-                ".zshenv": Path(f"{home}/.zshenv"),
-                ".zprofile": Path(f"{home}/.zprofile"),
-                ".tmux.conf": Path(f"{home}/.tmux.conf"),
-                ".gitignore_global": Path(f"{home}/.gitignore_global"),
+                "helix/config.posix.toml": helix_config / "config.toml",
+                "helix/languages.toml": helix_config / "languages.toml",
+                "helix/plugins/init.scm": helix_config / "init.scm",
+                "helix/plugins/helix.scm": helix_config / "helix.scm",
+                "helix/snippets": helix_config / "snippets",
+                "ghostty": config / "ghostty",
+                "yt-dlp": config / "yt-dlp",
+                "zsh": config / "zsh",
+                ".zshrc": home / ".zshrc",
+                ".zshenv": home / ".zshenv",
+                ".zprofile": home / ".zprofile",
+                ".tmux.conf": home / ".tmux.conf",
+                ".gitignore_global": home / ".gitignore_global",
             }
 
         case _:
@@ -46,8 +52,11 @@ def get_links() -> dict[str, Path]:
 
 
 def main():
+    base = Path(__file__).parent.resolve()
     for target, link_path in get_links().items():
-        target_path = Path(target).absolute()
+        target_path = base / target
+
+        link_path.parent.mkdir(parents=True, exist_ok=True)
 
         if link_path.is_symlink():
             print(f"Removing symlink at {link_path}")

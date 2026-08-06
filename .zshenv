@@ -25,3 +25,8 @@ if [[ "$(uname -r)" = *"WSL2" ]]; then
   export WSL_HOME=/mnt/c/Users/$WSL_USER
   export GALLIUM_DRIVER=d3d12
 fi
+
+. "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"
+
+export PATH="$PATH:$HOME/.steel/bin"

@@ -45,6 +45,9 @@ args = ["--stdio"]
 command = "biome"
 args = ["lsp-proxy"] 
 
+[language-server.steel-language-server]
+command = "steel-language-server"
+
 [[language]]
 name = "python"
 auto-format = true
@@ -100,6 +103,12 @@ language-servers = [ { name = "typescript-language-server", except-features = [ 
 name = "json"
 auto-format = true
 language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "scheme"
+auto-format = true
+formatter = { command = "schemat" }
+language-servers = ["steel-language-server"]
 
 [[language]]
 name = "ini"

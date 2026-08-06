@@ -1,3 +1,8 @@
+fpath=(
+    ~/.local/share/zsh/site-functions/
+    $fpath
+)
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -57,5 +62,3 @@ if [[ (( $+commands[systemd-detect-virt] )) ||  "$(systemd-detect-virt)" == "wsl
   export LIBVA_DRIVER_NAME=d3d12
   export BROWSER='/mnt/c/Windows/explorer.exe'
 fi
-
-. "$HOME/.local/bin/env"
