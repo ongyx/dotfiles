@@ -72,7 +72,7 @@ language-servers = []
 
 [[language]]
 name = "c-sharp"
-comment-token = ["//", "///"]
+comment-tokens = ["//", "///"]
 language-servers = ["hx-lsp", "csharp-ls"]
 auto-format = true
 

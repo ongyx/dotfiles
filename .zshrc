@@ -33,7 +33,7 @@ if ! type hx > /dev/null; then
 fi
 
 PROMPT='%2~ %(?.%F{green}%(!.&.*).%F{red}!)%f '
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/openssh_agent
 
 function backup() {
   tar -acvf "$(basename -- "$1") $(date +%F).tar.zst" "$@"
@@ -43,9 +43,9 @@ if (( $+commands[doctl] )); then
   eval $(doctl completion zsh)
 fi
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
 
 if [[ "$(uname)" == "Darwin" ]]; then
   source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
@@ -54,6 +54,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 if [[ (( $+commands[systemd-detect-virt] )) ||  "$(systemd-detect-virt)" == "wsl" ]]; then
-  export GALLIUM_DRIVER=d3d12
   export LIBVA_DRIVER_NAME=d3d12
+  export BROWSER='/mnt/c/Windows/explorer.exe'
 fi
+
+. "$HOME/.local/bin/env"

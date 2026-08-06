@@ -14,6 +14,11 @@ end-of-line-diagnostics = "hint"
 
 shell = ["zsh", "-c"]
 
+[editor.statusline]
+left = ["mode", "spinner", "file-base-name", "read-only-indicator", "file-modification-indicator"]
+center = ["version-control"]
+right = ["diagnostics", "selections", "register", "position", "file-encoding"]
+
 [editor.lsp]
 display-messages = true
 
