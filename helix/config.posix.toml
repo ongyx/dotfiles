@@ -10,7 +10,6 @@ undercurl = true
 bufferline = "multiple"
 color-modes = true
 popup-border = "all"
-end-of-line-diagnostics = "hint"
 
 shell = ["zsh", "-c"]
 
@@ -21,6 +20,8 @@ right = ["diagnostics", "selections", "register", "position", "file-encoding"]
 
 [editor.lsp]
 display-messages = true
+display-progress-messages = true
+display-inlay-hints = true
 
 [editor.cursor-shape]
 normal = "block"
@@ -31,10 +32,10 @@ select = "underline"
 hidden = true
 
 [editor.soft-wrap]
-enable = true
+enable = false
 
 [editor.inline-diagnostics]
-cursor-line = "warning"
+cursor-line = "hint"
 
 [keys.normal]
 # Discard selection when appending.

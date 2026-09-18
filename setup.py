@@ -39,10 +39,9 @@ def get_links() -> dict[str, Path]:
                 "helix/snippets": helix_config / "snippets",
                 "ghostty": config / "ghostty",
                 "yt-dlp": config / "yt-dlp",
-                "zsh": config / "zsh",
-                ".zshrc": home / ".zshrc",
-                ".zshenv": home / ".zshenv",
-                ".zprofile": home / ".zprofile",
+                ".profile": home / ".profile",
+                ".bashrc": home / ".bashrc",
+                ".inputrc": home / ".inputrc",
                 ".tmux.conf": home / ".tmux.conf",
                 ".gitignore_global": home / ".gitignore_global",
             }

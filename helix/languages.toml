@@ -60,6 +60,8 @@ language-servers = ["godot"]
 [[language]]
 name = "markdown"
 comment-tokens = ["-", "+", "*", "1.", ">", "- [ ]"]
+auto-format = true
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
 language-servers = ["marksman"]
 
 [[language]]

@@ -1,8 +1,7 @@
 export EDITOR=hx
-export JEKYLL_EDITOR=code
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-function () {
+makeflags() {
   local jobs=""
   if [[ "$(uname)" = "Darwin" ]]; then
     jobs=$(sysctl -n hw.logicalcpu)
@@ -12,6 +11,7 @@ function () {
   export MAKEFLAGS="-j$(jobs)"
   export CMAKE_BUILD_PARALLEL_LEVEL=jobs
 }
+makeflags
 
 if [[ "$(uname)" = "Android" ]]; then
   setopt CHASE_LINKS
@@ -28,5 +28,8 @@ fi
 
 . "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"
+. "$HOME/.deno/env"
 
-export PATH="$PATH:$HOME/.steel/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/go/bin:$HOME/.dotnet/tools:$HOME/.steel/bin"
+
+[ "$BASH" ] && source ~/.bashrc
