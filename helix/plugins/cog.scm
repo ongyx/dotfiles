@@ -1,4 +1,4 @@
-(define package-name 'helix-config)
+(define package-name 'helix-plugins)
 (define version "0.1.0")
 (define dependencies
   '(
