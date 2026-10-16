@@ -148,3 +148,9 @@ indent = { tab-width = 4, unit = "\t" }
 [[grammar]]
 name = "ini"
 source = { git = "https://github.com/justinmk/tree-sitter-ini", rev = "e4018b5176132b4f3c5d6e61cea383f42288d0f5" }
+
+[[language]]
+name = "c"
+formatter = { command = "clang-format", args = ["--style=file"] }
+auto-format = true
+indent = { tab-width = 4, unit = "\t" }
