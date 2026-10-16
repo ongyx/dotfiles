@@ -51,9 +51,14 @@ if [[ -x "$(command -v doctl)" ]]; then
   eval $(doctl completion bash)
 fi
 
-if [[ -x "$(command -v systemd-detect-virt)" ||  "$(systemd-detect-virt)" == "wsl" ]]; then
-  export LIBVA_DRIVER_NAME=d3d12
-  export BROWSER='/mnt/c/Windows/explorer.exe'
+if [[ -x "$(command -v xdg-open)" ]]; then
+  alias open=xdg-open
 fi
 
-source /home/ongyx/.local/share/bash-completion/completions/deno.bash
+deno_compl="$HOME/.local/share/bash-completion/completions/deno.bash"
+[ -f "$deno_compl" ] && . "$deno_compl"
+unset deno_compl
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
