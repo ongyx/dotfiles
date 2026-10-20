@@ -1,4 +1,3 @@
---extractor-args "youtube:player_client=web_music,default;"
 --extractor-args "youtubepot-bgutilhttp:base_url=http://localhost:4416"
 --continue
 --no-overwrites

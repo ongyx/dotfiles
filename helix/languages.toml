@@ -16,8 +16,9 @@ command = "mdpls"
 [language-server.mdpls.config]
 markdown.preview.auto = true
 
-[language-server.csharp-ls]
-command = "csharp-ls"
+[language-server.roslyn]
+command = "roslyn-language-server"
+args = ["--stdio", "--autoLoadProjects"]
 
 [language-server.rust-analyzer]
 command = "rust-analyzer"
@@ -37,9 +38,9 @@ imports.granularity.group = "module"
 [language-server.hx-lsp]
 command = "hx-lsp"
 
-[language-server.vtsls]
-command = "vtsls"
-args = ["--stdio"]
+# [language-server.vtsls]
+# command = "vtsls"
+# args = ["--stdio"]
 
 [language-server.biome]
 command = "biome"
@@ -47,6 +48,46 @@ args = ["lsp-proxy"]
 
 [language-server.steel-language-server]
 command = "steel-language-server"
+
+[language-server.tsc]
+command = "tsc"
+args = ["--lsp", "--stdio"]
+
+[language-server.tsc.config.typescript]
+format.enabled = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.parameterTypes.enabled = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+
+[language-server.tsc.config.javascript]
+format.enabled = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.parameterTypes.enabled = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+
+[language-server.tsc.config.tsx]
+format.enabled = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.parameterTypes.enabled = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
+
+[language-server.tsc.config.jsx]
+format.enabled = false
+inlayHints.enumMemberValues.enabled = true
+inlayHints.functionLikeReturnTypes.enabled = true
+inlayHints.parameterTypes.enabled = true
+inlayHints.parameterNames.enabled = "all"
+inlayHints.propertyDeclarationTypes.enabled = true
+inlayHints.variableTypes.enabled = true
 
 [[language]]
 name = "python"
@@ -78,28 +119,28 @@ language-servers = []
 [[language]]
 name = "c-sharp"
 comment-tokens = ["//", "///"]
-language-servers = ["hx-lsp", "csharp-ls"]
+language-servers = ["hx-lsp", "roslyn"]
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [ { name = "tsc" } ]
 auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome", "vtsls" ]
+language-servers = [ { name = "tsc", except-features = [ "format" ] }, "biome" ]
 auto-format = true
 
 [[language]]
 name = "tsx"
 auto-format = true
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [ { name = "tsc", except-features = [ "format" ] }, "biome" ]
 
 [[language]]
 name = "jsx"
 auto-format = true
-language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [ { name = "tsc", except-features = [ "format" ] }, "biome" ]
 
 [[language]]
 name = "json"

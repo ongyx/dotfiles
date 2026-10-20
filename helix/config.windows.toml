@@ -38,7 +38,7 @@ select = "underline"
 hidden = true
 
 [editor.soft-wrap]
-enable = true
+# enable = true
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
@@ -54,8 +54,8 @@ X = "extend_line_above"
 "ret" = "goto_word"
 
 # Navigate buffers.
-H = ":buffer-next"
-L = ":buffer-previous"
+"tab" = ":buffer-next"
+"S-tab" = ":buffer-previous"
 
 # Git commands.
 [keys.normal.G]

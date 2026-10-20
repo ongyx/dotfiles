@@ -1,156 +1,158 @@
 {
-  "$help": "https://aka.ms/terminal-documentation",
-  "$schema": "https://aka.ms/terminal-profiles-schema",
-  "actions": [],
-  "copyFormatting": "none",
-  "copyOnSelect": false,
-  "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-  "keybindings": [
-    {
-      "id": "Terminal.CopyToClipboard",
-      "keys": "ctrl+c"
-    },
-    {
-      "id": "Terminal.PasteFromClipboard",
-      "keys": "ctrl+v"
-    },
-    {
-      "id": "Terminal.FindText",
-      "keys": "ctrl+shift+f"
-    },
-    {
-      "id": "Terminal.DuplicatePaneAuto",
-      "keys": "alt+shift+d"
-    }
-  ],
-  "newTabMenu": [
-    {
-      "type": "remainingProfiles"
-    }
-  ],
-  "profiles": {
-    "defaults": {
-      "adjustIndistinguishableColors": "always",
-      "bellStyle": "taskbar",
-      "colorScheme": "Dark+",
-      "elevate": false,
-      "font": {
-        "face": "JetBrains Mono",
-        "size": 11,
-        "weight": "normal"
-      },
-      "intenseTextStyle": "bold"
-    },
-    "list": [
-      {
-        "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-        "font": {
-          "face": "JetBrains Mono",
-          "size": 11
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "keybindings": 
+    [
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
         },
-        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-        "hidden": false,
-        "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-        "name": "Windows PowerShell"
-      },
-      {
-        "font": {
-          "face": "Monocraft",
-          "size": 10
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
         },
-        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "hidden": false,
-        "name": "Command Prompt"
-      },
-      {
-        "guid": "{93312b4e-bfd4-554f-b52d-1dcad2a19605}",
-        "hidden": false,
-        "name": "Arch Linux",
-        "source": "Microsoft.WSL"
-      },
-      {
-        "commandline": "wsl -d kali-linux kex --esm --wtstart -s",
-        "guid": "{55ca431a-3a87-5fb3-83cd-11ecedd031d2}",
-        "hidden": false,
-        "icon": "file:///c:/users/ongyo/pictures/icons/kali-menu.png",
-        "name": "Kali Linux",
-        "startingDirectory": "//wsl$/kali-linux/home/phaethon"
-      },
-      {
-        "guid": "{40111920-2be4-5317-b23e-863465097879}",
-        "hidden": true,
-        "name": "Developer Command Prompt for VS 2022 (2)",
-        "source": "Windows.Terminal.VisualStudio"
-      },
-      {
-        "guid": "{b5e9fc16-d72b-5692-8631-e30e201a040f}",
-        "hidden": true,
-        "name": "Developer PowerShell for VS 2022 (2)",
-        "source": "Windows.Terminal.VisualStudio"
-      },
-      {
-        "guid": "{5377d881-59fb-5be0-bd43-71416b534953}",
-        "hidden": false,
-        "name": "Developer Command Prompt for VS 18",
-        "source": "Windows.Terminal.VisualStudio"
-      },
-      {
-        "guid": "{68a52b2e-2c8d-548e-81d9-b85618acfddf}",
-        "hidden": false,
-        "name": "Developer PowerShell for VS 18",
-        "source": "Windows.Terminal.VisualStudio"
-      }
-    ]
-  },
-  "schemes": [
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        }
+    ],
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
     {
-      "background": "#F7F7F7",
-      "black": "#000000",
-      "blue": "#325CC0",
-      "brightBlack": "#777777",
-      "brightBlue": "#007ACC",
-      "brightCyan": "#00AACB",
-      "brightGreen": "#60CB00",
-      "brightPurple": "#E64CE6",
-      "brightRed": "#F05050",
-      "brightWhite": "#F0F0F0",
-      "brightYellow": "#FFBC5D",
-      "cursorColor": "#007ACC",
-      "cyan": "#0083B2",
-      "foreground": "#000000",
-      "green": "#448C27",
-      "name": "Alabaster",
-      "purple": "#7A3E9D",
-      "red": "#AA3731",
-      "selectionBackground": "#BFDBFE",
-      "white": "#F0F0F0",
-      "yellow": "#CB9000"
+        "defaults": 
+        {
+            "adjustIndistinguishableColors": "always",
+            "bellSound": 
+            [
+                "C:\\Users\\ongyo\\Music\\Effects\\fordchime.mp3"
+            ],
+            "bellStyle": "none",
+            "colorScheme": "Dark+",
+            "elevate": false,
+            "font": 
+            {
+                "face": "JetBrains Mono",
+                "size": 11,
+                "weight": "normal"
+            },
+            "intenseTextStyle": "none"
+        },
+        "list": 
+        [
+            {
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+                "font": 
+                {
+                    "size": 11,
+                    "weight": "normal"
+                },
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
+                "intenseTextStyle": "bold",
+                "name": "Windows PowerShell"
+            },
+            {
+                "font": 
+                {
+                    "cellWidth": "0.6",
+                    "face": "Courier Prime",
+                    "size": 11,
+                    "weight": "normal"
+                },
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            },
+            {
+                "font": 
+                {
+                    "face": "JetBrainsMono Nerd Font Mono"
+                },
+                "guid": "{8278754a-3800-520d-969a-f9c0bf765a21}",
+                "hidden": false,
+                "name": "DebianUnstable",
+                "source": "Microsoft.WSL"
+            },
+            {
+                "guid": "{5377d881-59fb-5be0-bd43-71416b534953}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{68a52b2e-2c8d-548e-81d9-b85618acfddf}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            }
+        ]
     },
-    {
-      "background": "#0D1117",
-      "black": "#484F58",
-      "blue": "#58A6FF",
-      "brightBlack": "#6E7681",
-      "brightBlue": "#79C0FF",
-      "brightCyan": "#56D4DD",
-      "brightGreen": "#56D364",
-      "brightPurple": "#D2A8FF",
-      "brightRed": "#FFA198",
-      "brightWhite": "#FFFFFF",
-      "brightYellow": "#E3B341",
-      "cursorColor": "#2F81F7",
-      "cyan": "#39C5CF",
-      "foreground": "#E6EDF3",
-      "green": "#3FB950",
-      "name": "GitHub-Dark-Default",
-      "purple": "#BC8CFF",
-      "red": "#FF7B72",
-      "selectionBackground": "#E6EDF3",
-      "white": "#B1BAC4",
-      "yellow": "#D29922"
-    }
-  ],
-  "theme": "system",
-  "themes": [],
-  "useAcrylicInTabRow": true
+    "rendering.disablePartialInvalidation": true,
+    "rendering.graphicsAPI": "direct3d11",
+    "schemes": 
+    [
+        {
+            "background": "#F7F7F7",
+            "black": "#000000",
+            "blue": "#325CC0",
+            "brightBlack": "#777777",
+            "brightBlue": "#007ACC",
+            "brightCyan": "#00AACB",
+            "brightGreen": "#60CB00",
+            "brightPurple": "#E64CE6",
+            "brightRed": "#F05050",
+            "brightWhite": "#F0F0F0",
+            "brightYellow": "#FFBC5D",
+            "cursorColor": "#007ACC",
+            "cyan": "#0083B2",
+            "foreground": "#000000",
+            "green": "#448C27",
+            "name": "Alabaster",
+            "purple": "#7A3E9D",
+            "red": "#AA3731",
+            "selectionBackground": "#BFDBFE",
+            "white": "#F0F0F0",
+            "yellow": "#CB9000"
+        },
+        {
+            "background": "#0D1117",
+            "black": "#484F58",
+            "blue": "#58A6FF",
+            "brightBlack": "#6E7681",
+            "brightBlue": "#79C0FF",
+            "brightCyan": "#56D4DD",
+            "brightGreen": "#56D364",
+            "brightPurple": "#D2A8FF",
+            "brightRed": "#FFA198",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#E3B341",
+            "cursorColor": "#2F81F7",
+            "cyan": "#39C5CF",
+            "foreground": "#E6EDF3",
+            "green": "#3FB950",
+            "name": "GitHub-Dark-Default",
+            "purple": "#BC8CFF",
+            "red": "#FF7B72",
+            "selectionBackground": "#E6EDF3",
+            "white": "#B1BAC4",
+            "yellow": "#D29922"
+        }
+    ],
+    "theme": "system",
+    "themes": [],
+    "useAcrylicInTabRow": true
 }
