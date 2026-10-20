@@ -9,9 +9,6 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 shopt -s globstar
 
-alias ls="ls -lah --color"
-alias grep="grep --color"
-
 # https://stackoverflow.com/a/1703567
 _COLOR_BLACK=$(tput setaf 0)
 _COLOR_RED=$(tput setaf 1)
@@ -43,16 +40,28 @@ EOF
 
 export PS1='\H \w \[${_PROMPT_COLOR}\]$_PROMPT_SYM\[${_COLOR_NORMAL}\] '
 
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+alias ls="ls -lah --color"
+alias grep="grep --color"
+
+if [[ -x "$(command -v xdg-open)" ]]; then
+  alias open=xdg-open
+fi
+
 backup() {
   tar -acvf "$(basename -- "$1") $(date +%F).tar.zst" "$@"
 }
 
 if [[ -x "$(command -v doctl)" ]]; then
   eval $(doctl completion bash)
-fi
-
-if [[ -x "$(command -v xdg-open)" ]]; then
-  alias open=xdg-open
 fi
 
 deno_compl="$HOME/.local/share/bash-completion/completions/deno.bash"
