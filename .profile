@@ -28,7 +28,7 @@ if [[ -x "$(command -v systemd-detect-virt)" && "$(systemd-detect-virt)" == "wsl
   export LIBVA_DRIVER_NAME=d3d12
 fi
 
-if systemctl --user is-active ssh-agent.service > /dev/null; then
+if systemctl --user is-enabled ssh-agent.socket > /dev/null; then
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
 fi
 
