@@ -12,12 +12,12 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.FindText",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
@@ -98,6 +98,12 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 18",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{5a77ac18-e87d-5729-84ed-36f36a54e8e8}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Microsoft.WSL"
             }
         ]
     },

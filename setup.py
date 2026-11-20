@@ -6,7 +6,7 @@ PWSH_PROFILE = "Microsoft.PowerShell_profile.ps1"
 WT_PACKAGE = "Microsoft.WindowsTerminal_8wekyb3d8bbwe"
 
 
-def get_links() -> dict[str, Path]:
+def get_links() -> tuple[dict[str, Path], dict[str, Path]]:
     match os.name:
         case "nt":
             home = Path(os.environ["USERPROFILE"])
@@ -20,10 +20,11 @@ def get_links() -> dict[str, Path]:
                 "helix/plugins/init.scm": helix_config / "init.scm",
                 "helix/plugins/helix.scm": helix_config / "helix.scm",
                 "helix/snippets": helix_config / "snippets",
-                f"pwsh/{PWSH_PROFILE}": home / "Documents/PowerShell" / PWSH_PROFILE,
                 "yt-dlp": roaming_app_data / "yt-dlp",
                 "wt": local_app_data / "Packages" / WT_PACKAGE / "LocalState",
                 ".gitignore_global": home / ".gitignore_global",
+            }, {
+                f"pwsh/{PWSH_PROFILE}": home / "Documents/PowerShell" / PWSH_PROFILE,
             }
 
         case "posix":
@@ -44,15 +45,17 @@ def get_links() -> dict[str, Path]:
                 ".inputrc": home / ".inputrc",
                 ".tmux.conf": home / ".tmux.conf",
                 ".gitignore_global": home / ".gitignore_global",
-            }
+            }, {}
 
         case _:
-            return {}
+            return {}, {}
 
 
 def main():
     base = Path(__file__).parent.resolve()
-    for target, link_path in get_links().items():
+    symlinks, hardlinks = get_links()
+
+    for target, link_path in symlinks.items():
         target_path = base / target
 
         link_path.parent.mkdir(parents=True, exist_ok=True)
@@ -67,6 +70,22 @@ def main():
 
         print(f"Symlinking {target_path} to {link_path}")
         link_path.symlink_to(target_path)
+
+    for target, link_path in hardlinks.items():
+        target_path = base / target
+
+        link_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if link_path.exists():
+            print(f"Removing hardlink at {link_path}")
+            link_path.unlink()
+        elif link_path.exists():
+            # Don't touch existing file/dir.
+            print(f"Skipping {link_path} - not a hardlink")
+            continue
+
+        print(f"Hardlinking {target_path} to {link_path}")
+        link_path.hardlink_to(target_path)
 
 
 if __name__ == "__main__":
